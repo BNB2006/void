@@ -3,7 +3,6 @@
 import { useState, useCallback, createContext, useContext } from "react"
 import { Window } from "../Window/Window.jsx"
 
-// Create a context for window management
 export const WindowManagerContext = createContext({
   windows: [],
   openWindow: () => {},
@@ -11,8 +10,8 @@ export const WindowManagerContext = createContext({
   minimizeWindow: () => {},
   maximizeWindow: () => {},
   focusWindow: () => {},
+  restoreWindow: () => {},
 })
-
 
 export function useWindowManager() {
   return useContext(WindowManagerContext)
@@ -20,7 +19,7 @@ export function useWindowManager() {
 
 
 export function WindowManager({ children }) {
-  const [windows, setWindows] = useState([]) // Array of all currently open windows
+  const [windows, setWindows] = useState([])
   const [nextZIndex, setNextZIndex] = useState(1000)
   console.log("WindowManager rendering, windows:", windows.length)
 
@@ -31,23 +30,18 @@ export function WindowManager({ children }) {
       const existingWindow = windows.find((w) => w.id === app.id)
 
       if (existingWindow) {
-        focusWindow(app.id)
         if (existingWindow.isMinimized) {
-          setWindows((prev) =>
-            prev.map((w) =>
-              w.id === app.id
-                ? { ...w, isMinimized: false }
-                : w,
-            ),
-          )
+          restoreWindow(app.id)
+        } else {
+          focusWindow(app.id)
         }
         return 
       }
 
       const newWindow = {
-        id: app.id,
-        title: app.title, 
-        icon: app.icon, 
+        id: app.id, 
+        title: app.title,
+        icon: app.icon,  
         component: app.component, 
         isMinimized: false, 
         isMaximized: false, 
@@ -63,8 +57,9 @@ export function WindowManager({ children }) {
       console.log("Window added, new count:", windows.length + 1) 
 
       setNextZIndex((prev) => prev + 1)
-
-    },[windows, nextZIndex])
+    },
+    [windows, nextZIndex], 
+  )
 
  
   const closeWindow = useCallback((id) => {
@@ -84,7 +79,23 @@ export function WindowManager({ children }) {
     )
   }, [])
 
- 
+
+  const restoreWindow = useCallback(
+    (id) => {
+      console.log("Restoring window:", id) 
+      setWindows((prev) =>
+        prev.map((w) =>
+          w.id === id
+            ? { ...w, isMinimized: false, zIndex: nextZIndex } 
+            : w,
+        ),
+      )
+      setNextZIndex((prev) => prev + 1) 
+    },
+    [nextZIndex],
+  )
+
+
   const maximizeWindow = useCallback((id) => {
     console.log("Maximizing window:", id) 
     setWindows((prev) =>
@@ -131,6 +142,7 @@ export function WindowManager({ children }) {
     minimizeWindow,
     maximizeWindow,
     focusWindow,
+    restoreWindow, 
     updateWindowPosition,
   }
 
