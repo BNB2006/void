@@ -1,6 +1,6 @@
 import { BatteryMedium, CloudSun, Search, Volume2, Wifi } from "lucide-react";
 
-function Taskbar(){
+export function Taskbar(){
 
     return(
         <div className="fixed bottom-0 left-0 w-full h-12 bg-black/70 backdrop-blur-sm flex items-center justify-between px-4 text-white">
@@ -27,4 +27,3 @@ function Taskbar(){
     )
 };
 
-export default Taskbar;

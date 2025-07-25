@@ -1,12 +1,16 @@
-import Desktop from "./components/DeskTop"
-import Taskbar from "./components/Taskbar"
+
+import { Desktop } from "./components/Desktop"
+import { Taskbar } from "./components/Taskbar"
+import { WindowManager } from "./components/WindowManager/WindowManager"
 
 function App() {
 
   return (
     <div className="h-screen w-full overflow-hidden">
-    <Desktop/>
-    <Taskbar/>
+      <WindowManager>
+        <Desktop/>
+        <Taskbar/>
+    </WindowManager>
     </div>
   )
 }
