@@ -95,7 +95,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
         </div>
       </div>
 
-      <div className="h-full overflow-auto p-4">
+      <div className="h-full overflow-auto p-1">
         {children}
       </div>
     </div>

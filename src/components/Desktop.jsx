@@ -28,7 +28,7 @@ export function Desktop() {
             "
             onDoubleClick={() => handleAppOpen(app)}
           >
-            <div className="p-2 bg-white/20 rounded-lg mb-1">{app.icon}</div>
+            <div>{app.icon}</div>
 
             <span className="text-xs text-white text-center">{app.title}</span>
           </div>

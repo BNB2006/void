@@ -37,7 +37,7 @@ export function Taskbar() {
           <button
             key={window.id}
             className={`
-              text-white bg-white/20 p-3 rounded 
+              text-white bg-white/20 p-1 rounded 
               flex items-center gap-2
               transition-opacity
               ${window.isMinimized ? "opacity-60" : "opacity-100"}
@@ -55,11 +55,9 @@ export function Taskbar() {
                     <Wifi size={20} />
                     <Volume2 size={20}/>
                     <BatteryMedium size={20} /></div>
-                <div className="text-[12px] gap-2 px-2 rounded-md hover:bg-gray-500 text-end">
-                    <div>
-                        <p>12:34 PM</p>
-                        <p>24-07-2025</p>
-                    </div>
+                <div className="text-[12px] px-2 rounded-md hover:bg-gray-500 flex flex-col text-end">
+                    <span>{currentTime.toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"})}</span>
+                    <span>{currentTime.toLocaleDateString()}</span>
                 </div>
             </div>
     </div>
