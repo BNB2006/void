@@ -25,7 +25,7 @@ export const apps = [
       width: 34,
     }),
     component: React.createElement(Terminal),
-    defaultSize: { width: 300, height: 400 },
+    defaultSize: { width: 400, height: 300 },
   },
 ]
 

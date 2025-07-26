@@ -39,6 +39,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
         rounded-lg     
         shadow-lg 
         overflow-hidden   
+        flex flex-col
         ${isDragging ? "cursor-grabbing" : ""}
       `}
       style={windowStyle}
@@ -54,6 +55,8 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
           cursor-grab 
           active:cursor-grabbing
           select-none 
+          min-h-[40]
+          
         "
         onMouseDown={handleMouseDown}
       >
@@ -95,7 +98,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
         </div>
       </div>
 
-      <div className="h-full overflow-auto p-1">
+      <div className="flex-1 overflow-auto">
         {children}
       </div>
     </div>

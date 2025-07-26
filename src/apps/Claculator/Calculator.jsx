@@ -78,7 +78,7 @@ export function Calculator() {
   ]
 
   return (
-    <div className="w-full max-w-xs mx-auto">
+    <div className="w-full max-w-xs mx-auto p-2">
       {/* Calculator Display */}
       <div className="bg-black text-white text-right text-2xl p-4 mb-2 rounded">{display}</div>
 
