@@ -2,6 +2,7 @@ import React from "react"
 import { Calculator } from './Claculator/Calculator'
 import { CalculatorIcon, FileText, TerminalIcon } from "lucide-react"
 import { Terminal } from "./Terminal/Terminal"
+import { FileExplorer } from "./FileExplorer/FileExplorer"
 
  
 export const apps = [
@@ -26,6 +27,17 @@ export const apps = [
     }),
     component: React.createElement(Terminal),
     defaultSize: { width: 400, height: 300 },
+  },
+  {
+    id: "fileExplorer",
+    title: "File Explorer",
+    icon: React.createElement("img", {
+      src: "https://cdn-icons-png.flaticon.com/128/11014/11014574.png",
+      alt: "File Explorer",
+      width: 34,
+    }),
+    component: React.createElement(FileExplorer),
+    defaultSize: { width: 500, height: 350 },
   },
 ]
 
