@@ -95,6 +95,11 @@ export function FileExplorer(){
             },
           },
         },
+        Notes: {
+          type: "folder",
+          name: "Notes",
+          children:{},
+        }
       },
     },
   });
@@ -170,13 +175,13 @@ export function FileExplorer(){
     const items = getCurrentDirectory()
     if (!searchQuery) return items 
 
-    const filtered = {}
-    Object.entries(items).forEach(([name, item]) => {
-      if (name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        filtered[name] = item
-      }
-    })
-    return filtered
+      const filtered = {}
+      Object.entries(items).forEach(([name, item]) => {
+        if(name.toLowerCase().includes(searchQuery.toLowerCase())){
+          filtered[name] = item;
+        }
+      })
+    return filtered;
   }
 
   const getBreadcrumbs = () => {
@@ -216,6 +221,8 @@ export function FileExplorer(){
         <div className="relative">
           <Search size={16} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-500"/>
           <input type="text" placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="border pl-7 pr-2 py-1 text-sm rounded focus:outline-none focus:ring-1" />
         </div>
 
@@ -239,7 +246,11 @@ export function FileExplorer(){
       {/* Upload file section */}
 
       <div className="flex-1 overflow-auto">
-        {/* Search folder/files items  */}
+        {Object.keys(currentItems).length === 0 ? (
+          <div className="flex items-center justify-center h-full text-red-400">
+            {searchQuery ? "No items match your search" : "This folder is empty"}
+          </div>
+        ) : (
 
         <div className="grid grid-cols-1 p-2">
           {Object.entries(currentItems). map(([name, item]) => (
@@ -274,6 +285,7 @@ export function FileExplorer(){
             </div>
           ))}
         </div>
+        )}
       </div>
 
     </div>
