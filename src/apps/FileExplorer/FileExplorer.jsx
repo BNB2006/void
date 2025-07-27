@@ -157,6 +157,9 @@ export function FileExplorer(){
     setSelectedItems([])
   }
 
+  const goBack = () => {
+    navigateToFolder("..")
+  }
 
   const filteredItems = () => {
     const items = getCurrentDirectory()
@@ -180,7 +183,8 @@ export function FileExplorer(){
       
       <div className="flex items-center gap-2 p-2 border-b bg-blue-200">
         <button
-          // disabled
+        onClick={goBack}
+          disabled={currentPath==="/"}
           className="p-1 rounded hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed" 
           title="Go Back">
           <ArrowLeft size={18}/>
