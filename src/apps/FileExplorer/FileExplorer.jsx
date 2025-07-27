@@ -234,6 +234,37 @@ export function FileExplorer(){
     setNewItemName("");
   }
 
+  const toggleSelection = (itemName) => {
+    setSelectedItems((prev) => 
+      prev.includes(itemName)? prev.filter((name) => name !== itemName) : [...prev, itemName],
+    )
+  }
+
+  const deleteItem = () => {
+    setFileSystem((prev) => {
+      const newFS = { ...prev }
+      const pathParts = currentPath.split("/").filter(Boolean)
+      let current = newFS["/"]
+
+      for(const part of pathParts){
+        if(current.children && current.children[part]){
+          current = current.children[part]
+        }
+      }
+
+      selectedItems.forEach((itemName) => {
+        if(current.children && current.children[itemName]){
+            delete current.children[itemName]
+        }
+      })
+
+      return newFS
+    })
+
+    setSelectedItems([])
+    console.log(selectedItems)
+  }
+
   const filteredItems = () => {
     const items = getCurrentDirectory()
     if (!searchQuery) return items 
@@ -300,10 +331,13 @@ export function FileExplorer(){
         <File size={18}/>
       </button>
 
-      <button className="p-1 rounded hover:bg-red-300" title="Delete">
+      {selectedItems.length > 0 && (
+      <button onClick={deleteItem}  className="p-1 rounded hover:bg-red-300" title="Delete">
         <Trash2 size={18}/>
       </button>
+      )}
       </div>
+      
 
 
       {/* Upload file section */}
@@ -323,7 +357,7 @@ export function FileExplorer(){
                 flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-blue-200
                 ${selectedItems.includes(name) ? "bg-blue-600" : ""}
               `}
-              // onClick={() => toggleSelection(name)}
+              onClick={() => toggleSelection(name)}
               onDoubleClick={() => {
                 if(item.type === "folder"){
                   navigateToFolder(name);
