@@ -8,6 +8,10 @@ export function FileExplorer(){
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
 
+  const [showCreateFolder, setShowCreateFolder] = useState(false)
+  const [showCreateFile, setShowCreateFile] = useState(false)
+  const [newItemName, setNewItemName] = useState("")
+
   const [fileSystem, setFileSystem] = useState({
     '/':{
       type: "folder",
@@ -171,6 +175,65 @@ export function FileExplorer(){
     setSelectedItems([]);
   }
 
+  const createFolder = () => {
+    if (!newItemName.trim()) return
+
+    setFileSystem((prev) => {
+      const newFS = { ...prev }
+      const pathParts = currentPath.split("/").filter(Boolean)
+      let current = newFS["/"]
+
+      for (const part of pathParts) {
+        if (current.children && current.children[part]) {
+          current = current.children[part]
+        }
+      }
+
+      if (!current.children) current.children = {}
+      current.children[newItemName] = {
+        type: "folder",
+        name: newItemName,
+        children: {},
+      }
+
+      return newFS
+    })
+
+    setNewItemName("")
+    setShowCreateFolder(false)
+  }
+
+  const createFile = () => {
+    if(!newItemName.trim()) return;
+    
+    setFileSystem((prev) => {
+      const newFS = { ...prev }
+      const pathParts = currentPath.split("/").filter(Boolean)
+      let current = newFS["/"]
+
+      for(const part of pathParts){
+        if(current.children && current.children[part]){
+          current = current.children[part];
+        }
+      }
+
+      if(!current.children) current.children = {}
+      current.children[newItemName] = {
+        type: "file",
+        name: newItemName,
+        size: "0 KB",
+        modified: new Date().toISOString().split("T")[0],
+        content: "",
+        fileType: "text",
+      }
+
+      return newFS
+    })
+
+    setShowCreateFile(false);
+    setNewItemName("");
+  }
+
   const filteredItems = () => {
     const items = getCurrentDirectory()
     if (!searchQuery) return items 
@@ -230,10 +293,10 @@ export function FileExplorer(){
         <Upload size={18}/>
       </button>
 
-      <button className="p-1 rounded hover:bg-gray-400" title="Add Folder">
+      <button onClick={() => setShowCreateFolder(true)} className="p-1 rounded hover:bg-gray-400" title="Add Folder">
         <FolderPlus size={18}/>
       </button>
-      <button className="p-1 rounded hover:bg-gray-400" title="Add File">
+      <button onClick={() => setShowCreateFile(true)} className="p-1 rounded hover:bg-gray-400" title="Add File">
         <File size={18}/>
       </button>
 
@@ -265,7 +328,7 @@ export function FileExplorer(){
                 if(item.type === "folder"){
                   navigateToFolder(name);
                 }else{
-                  navigateToFile(name);
+                  // navigateToFile(name);
                 }
               }}
             >
@@ -287,6 +350,78 @@ export function FileExplorer(){
         </div>
         )}
       </div>
+
+
+      {/* Create Folder  */}
+      {showCreateFolder && (
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-blue-200 p-4 rounded-lg shadow-lg w-80">
+            <h3 className="text-lg font-medium mb-3">Create New Folder</h3>
+            <input
+              type="text"
+              placeholder="Folder name"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              className="w-full p-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+              onKeyPress={(e) => e.key === "Enter" && createFolder()}
+              autoFocus
+            />
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={createFolder}
+                disabled={!newItemName.trim()}
+                className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              >
+                Create
+              </button>
+              <button
+                onClick={() => {
+                  setShowCreateFolder(false)
+                  setNewItemName("")
+                }}
+                className="px-3 py-1 border rounded bg-white hover:bg-blue-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Create File  */}
+      {showCreateFile && (
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-blue-200 p-4 rounded-lg shadow-lg w-80">
+            <h3 className="text-lg font-medium mb-3">Create New File</h3>
+            <input
+              type="text"
+              placeholder="Folder name"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              className="w-full p-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+              onKeyPress={(e) => e.key === "Enter" && createFile()}
+              autoFocus
+            />
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={createFile}
+                disabled={!newItemName.trim()}
+                className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              >
+                Create
+              </button>
+              <button
+                onClick={() => {
+                  setShowCreateFile(false)
+                  setNewItemName("")
+                }}
+                className="px-3 py-1 border rounded bg-white hover:bg-blue-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   )
