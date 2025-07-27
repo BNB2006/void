@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowLeft, File, FileText, Folder, FolderPlus, Home, ImageIcon, Music, Search, Trash2, Upload, Video } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function FileExplorer(){
   const [currentPath, setCurrentPath] = useState('/');
@@ -11,6 +11,8 @@ export function FileExplorer(){
   const [showCreateFolder, setShowCreateFolder] = useState(false)
   const [showCreateFile, setShowCreateFile] = useState(false)
   const [newItemName, setNewItemName] = useState("")
+
+  const fileInputRef = useRef(null)
 
   const [fileSystem, setFileSystem] = useState({
     '/':{
@@ -152,6 +154,69 @@ export function FileExplorer(){
       default:
         return <File className="h-4 w-4 text-gray-500" /> 
     }
+  }
+
+  const handleFileUpload = (event) => {
+    const files = Array.from(event.target.files)
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const fileData = {
+          type: "file",
+          name: file.name,
+          size: formatFileSize(file.size),
+          modified: new Date().toISOString().split("T")[0],
+          url: e.target.result,
+          fileType: getFileType(file.type),
+          realFile: true,
+        }
+
+        setFileSystem((prev) => {
+          const newFS = { ...prev }
+          const pathParts = currentPath.split("/").filter(Boolean)
+          let current = newFS["/"]
+
+          for(const part of pathParts){
+            if(current.children && current.children[part]){
+              current = current.children[part]
+            }
+          }
+
+          if(!current.children) current.children = {}
+          current.children[file.name] = fileData
+
+          return newFS
+        })
+      }
+
+      if(file.type.startsWith("image/")){
+        reader.readAsDataURL(file)
+      }else if(file.type.startsWith("audio/") || file.type.startsWith("video/")){
+        reader.readAsDataURL(file)
+      }else{
+        reader.readAsText(file)
+      }
+    })
+
+    event.target.value = ""
+  }
+
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return "0 Bytes"
+    const k = 1024
+    const sizes = ["Bytes", "KB", "MB", "GB"]
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+  }
+
+  const getFileType = (mimeType) => {
+    if (mimeType.startsWith("image/")) return "image"
+    if (mimeType.startsWith("audio/")) return "audio"
+    if (mimeType.startsWith("video/")) return "video"
+    if (mimeType.startsWith("text/")) return "text"
+    return "file"
   }
 
   const navigateToFolder = (folderName) => {
@@ -320,7 +385,9 @@ export function FileExplorer(){
             className="border pl-7 pr-2 py-1 text-sm rounded focus:outline-none focus:ring-1" />
         </div>
 
-      <button className="p-1 rounded hover:bg-gray-400" title="Upload Files">
+      <button
+        onClick={() => fileInputRef.current?.click()}
+        className="p-1 rounded hover:bg-gray-400" title="Upload Files">
         <Upload size={18}/>
       </button>
 
@@ -337,11 +404,18 @@ export function FileExplorer(){
       </button>
       )}
       </div>
+
+      {/* file input  */}
+      <input 
+        type="file"
+        ref={fileInputRef}
+        multiple
+        onChange={handleFileUpload}
+        className="hidden"
+        accept="image/*,audio/*,video/*,text/*,.pdf,.doc,docx"
+      />
+
       
-
-
-      {/* Upload file section */}
-
       <div className="flex-1 overflow-auto">
         {Object.keys(currentItems).length === 0 ? (
           <div className="flex items-center justify-center h-full text-red-400">
