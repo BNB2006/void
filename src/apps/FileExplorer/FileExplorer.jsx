@@ -161,6 +161,11 @@ export function FileExplorer(){
     navigateToFolder("..")
   }
 
+  const goHome = () => {
+    setCurrentPath('/');
+    setSelectedItems([]);
+  }
+
   const filteredItems = () => {
     const items = getCurrentDirectory()
     if (!searchQuery) return items 
@@ -189,7 +194,7 @@ export function FileExplorer(){
           title="Go Back">
           <ArrowLeft size={18}/>
         </button>
-        <button className="p-1 rounded hover:bg-gray-400" title="Go Home">
+        <button onClick={goHome} className="p-1 rounded hover:bg-gray-400" title="Go Home">
           <Home size={18}/>
         </button>
         
