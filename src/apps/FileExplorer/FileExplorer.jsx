@@ -179,6 +179,12 @@ export function FileExplorer(){
     return filtered
   }
 
+  const getBreadcrumbs = () => {
+    if( currentPath === "/") return ["Home"];
+    const parts = currentPath.split("/").filter(Boolean);
+    return ["Home", ...parts]
+  }
+
 
 
   const currentItems = filteredItems()
@@ -199,7 +205,12 @@ export function FileExplorer(){
         </button>
         
         <div className="flex items-center gap-1 flex-1">
-          <span className="text-sm text-gray-600">Home/</span>
+          {getBreadcrumbs().map((crumb, index) => (
+            <span key={index} className="text-sm text-gray-600">
+              {index > 0 && "/"}
+              {crumb}
+            </span>
+          ))}
         </div>
 
         <div className="relative">
