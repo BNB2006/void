@@ -11,7 +11,7 @@ export const apps = [
     id: "Google",
     title: "Google",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/300/300221.png",
+      src: "/Logo/google.png",
       alt: "Goggle",
       width: 34,
     }),
@@ -22,7 +22,7 @@ export const apps = [
     id: "terminal",
     title: "Terminal",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/11743/11743974.png",
+      src: "/Logo/terminal.png",
       alt: "Terminal logo",
       width: 34,
     }),
@@ -33,7 +33,7 @@ export const apps = [
     id: "fileExplorer",
     title: "File Explorer",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/11014/11014574.png",
+      src: "/Logo/file.png",
       alt: "File Explorer",
       width: 34,
     }),
@@ -44,7 +44,7 @@ export const apps = [
     id: "vsCode",
     title: "VS Code",
     icon: React.createElement("img", {
-      src: "https://vs-lite.vercel.app/vs-code.svg",
+      src: "/Logo/vs-code.svg",
       alt: "VS code",
       width: 34,
     }),
@@ -55,7 +55,7 @@ export const apps = [
     id: "calculator",
     title: "Calculus",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/342/342344.png",
+      src: "/Logo/calculator.png",
       alt: "Calculos",
       width: 34,
     }),
