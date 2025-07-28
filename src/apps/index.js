@@ -3,19 +3,20 @@ import { Calculator } from './Claculator/Calculator'
 import { CalculatorIcon, FileText, TerminalIcon } from "lucide-react"
 import { Terminal } from "./Terminal/Terminal"
 import { FileExplorer } from "./FileExplorer/FileExplorer"
+import {  Google } from "./Google/Google"
 
  
 export const apps = [
   {
-    id: "calculator",
-    title: "Calculus",
+    id: "Google",
+    title: "Google",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/342/342344.png",
-      alt: "Calculos",
+      src: "https://cdn-icons-png.flaticon.com/128/300/300221.png",
+      alt: "Goggle",
       width: 34,
     }),
-    component: React.createElement(Calculator),
-    defaultSize: { width: 300, height: 400 },
+    component: React.createElement(Google),
+    defaultSize: { width: 700, height: 400 },
   },
   {
     id: "terminal",
@@ -39,6 +40,18 @@ export const apps = [
     component: React.createElement(FileExplorer),
     defaultSize: { width: 500, height: 350 },
   },
+  {
+    id: "calculator",
+    title: "Calculus",
+    icon: React.createElement("img", {
+      src: "https://cdn-icons-png.flaticon.com/128/342/342344.png",
+      alt: "Calculos",
+      width: 34,
+    }),
+    component: React.createElement(Calculator),
+    defaultSize: { width: 300, height: 400 },
+  },
+  
 ]
 
  
