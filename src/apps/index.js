@@ -1,9 +1,9 @@
 import React from "react"
 import { Calculator } from './Claculator/Calculator'
-import { CalculatorIcon, FileText, TerminalIcon } from "lucide-react"
 import { Terminal } from "./Terminal/Terminal"
 import { FileExplorer } from "./FileExplorer/FileExplorer"
-import {  Google } from "./Google/Google"
+import {  Google } from "./Iframe_Apps/Google"
+import { VSCode } from "./Iframe_Apps/VSCode"
 
  
 export const apps = [
@@ -39,6 +39,17 @@ export const apps = [
     }),
     component: React.createElement(FileExplorer),
     defaultSize: { width: 500, height: 350 },
+  },
+  {
+    id: "vsCode",
+    title: "VS Code",
+    icon: React.createElement("img", {
+      src: "https://vs-lite.vercel.app/vs-code.svg",
+      alt: "VS code",
+      width: 34,
+    }),
+    component: React.createElement(VSCode),
+    defaultSize: { width: 600, height: 400 },
   },
   {
     id: "calculator",
