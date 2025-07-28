@@ -1,17 +1,17 @@
 "use client"
 
-import { ArrowLeft, File, FileText, Folder, FolderPlus, Home, ImageIcon, Music, Search, Trash2, Upload, Video } from "lucide-react";
+import { ArrowLeft, File, FileText, Folder, FolderPlus, Home, ImageIcon, Music, Search, Trash2, Upload, Video, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function FileExplorer(){
   const [currentPath, setCurrentPath] = useState('/');
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
-
   const [showCreateFolder, setShowCreateFolder] = useState(false)
   const [showCreateFile, setShowCreateFile] = useState(false)
   const [newItemName, setNewItemName] = useState("")
-
+  const [showPreview, setShowPreview] = useState(false)
+  const [previewFile, setPreviewFile] = useState(null)
   const fileInputRef = useRef(null)
 
   const [fileSystem, setFileSystem] = useState({
@@ -23,12 +23,20 @@ export function FileExplorer(){
           type:"folder",
           name: "Images",
           children:{
-            "nature.jpeg":{
+            "AOT.jpg":{
               type: "file",
-              name: "nature.jpeg",
-              size: "2.5 MB",
+              name: "AOT.jpg",
+              size: "237 KB",
               modified: "2024-01-15",
-              URL: "https://images.pexels.com/photos/1172675/pexels-photo-1172675.jpeg",
+              url: "/assets/image/AOT.jpg",
+              fileType: "image",
+            },
+            "vinland.jpg":{
+              type: "file",
+              name: "vinland.jpg",
+              size: "1.6 MB",
+              modified: "2024-01-15",
+              url: "/assets/image/vinland.jpg",
               fileType: "image",
             },
           },
@@ -37,20 +45,20 @@ export function FileExplorer(){
           type: "folder",
           name: "Music",
           children: {
-            "demo-song.mp3": {
+            "Phillip.mp3": {
               type: "file",
-              name: "demo-song.mp3",
+              name: "Phillip.mp3",
               size: "4.2 MB",
               modified: "2024-01-12",
-              url: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT",
+              url: "/assets/audio/Phillip.mp3",
               fileType: "audio",
             },
-            "background-music.wav": {
+            "we-dont-talk-anymore.mp3": {
               type: "file",
-              name: "background-music.wav",
+              name: "we-dont-talk-anymore.mp3",
               size: "8.1 MB",
               modified: "2024-01-14",
-              url: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT",
+              url: "/assets/audio/we-dont-talk-anymore.mp3",
               fileType: "audio",
             },
           },
@@ -59,20 +67,20 @@ export function FileExplorer(){
           type: "folder",
           name: "Videos",
           children: {
-            "sample-video.mp4": {
+            "prime.mp4": {
               type: "file",
-              name: "sample-video.mp4",
-              size: "15.2 MB",
+              name: "Transformers.mp4",
+              size: "71.31 MB",
               modified: "2024-01-08",
-              url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              url: "/assets/video/transformers.mp4",
               fileType: "video",
             },
-            "tutorial.webm": {
+            "KungFuPanda.webm": {
               type: "file",
-              name: "tutorial.webm",
+              name: "KungFuPanda.webm",
               size: "8.7 MB",
               modified: "2024-01-16",
-              url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+              url: "/assets/video/KungFuPanda.mp4",
               fileType: "video",
             },
           },
@@ -217,6 +225,11 @@ export function FileExplorer(){
     if (mimeType.startsWith("video/")) return "video"
     if (mimeType.startsWith("text/")) return "text"
     return "file"
+  }
+
+  const previewFileHandler = (item) => {
+    setPreviewFile(item);
+    setShowPreview(true);
   }
 
   const navigateToFolder = (folderName) => {
@@ -436,7 +449,7 @@ export function FileExplorer(){
                 if(item.type === "folder"){
                   navigateToFolder(name);
                 }else{
-                  // navigateToFile(name);
+                  previewFileHandler(item);
                 }
               }}
             >
@@ -458,6 +471,64 @@ export function FileExplorer(){
         </div>
         )}
       </div>
+
+
+      {showPreview && previewFile &&(
+        <div className="absolute inset-0 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-blue-200 rounded-lg shadow-lg max-w-4xl max-h-full overflow-auto">
+           
+            <div className="bg-blue-300 flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-medium">{previewFile.name}</h3>
+              <button
+                onClick={() => setShowPreview(false)} 
+                className="p-1 rounded hover:bg-gray-200"
+              >
+                <X size={16}/>
+              </button>
+            </div>
+
+            <div className="p-4">
+               {previewFile.fileType === "image" && (
+                <img
+                  src={previewFile.url}
+                  alt={previewFile.name}
+                  className="max-w-full max-h-96 object-contain mx-auto"
+                />
+              )}
+
+              {previewFile.fileType === "audio" && (
+                <div className="text-center">
+                  <div className="mb-4">
+                    <Music size={48} className="mx-auto text-purple-500"/>
+                  </div>
+                  <audio src={previewFile.url} controls className="w-full max-w-md">Your browser does not support audio playback.</audio>
+                </div>
+              )}
+
+              {previewFile.fileType === "video" && (
+                <video controls  src={previewFile.url}
+                  className="max-w-full max-h-96 mx-auto"
+                >
+                  Your browser does not support video playback
+                </video>
+              )}
+
+              {previewFile.fileType === "text" && (
+                <div className="bg-gray-50 p-4 rounded max-h-96 overflow-auto">
+                  <pre>{previewFile.content || "No content available"}</pre>
+                </div>
+              )}
+
+            </div>
+
+              <div className="text-center p-4 border-t bg-blue-300 text-lg text-gray-600">
+                Size: {previewFile.size} • Modified: {previewFile.modified}
+              </div>
+            
+          </div>
+        </div>
+
+      )}
 
 
       {/* Create Folder  */}
