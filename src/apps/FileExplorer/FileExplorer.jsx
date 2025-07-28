@@ -412,7 +412,7 @@ export function FileExplorer(){
       </button>
 
       {selectedItems.length > 0 && (
-      <button onClick={deleteItem}  className="p-1 rounded hover:bg-red-300" title="Delete">
+      <button onClick={deleteItem}  className="p-1 rounded hover:bg-red-300 text-red-600" title="Delete">
         <Trash2 size={18}/>
       </button>
       )}
@@ -442,7 +442,7 @@ export function FileExplorer(){
               key={name}
               className={`
                 flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-blue-200
-                ${selectedItems.includes(name) ? "bg-blue-600" : ""}
+                ${selectedItems.includes(name) ? "bg-blue-300" : ""}
               `}
               onClick={() => toggleSelection(name)}
               onDoubleClick={() => {
