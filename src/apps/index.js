@@ -5,6 +5,7 @@ import { FileExplorer } from "./FileExplorer/FileExplorer"
 import {  Google } from "./Iframe_Apps/Google"
 import { VSCode } from "./Iframe_Apps/VSCode"
 import { NoteBook } from "./NoteBook/NoteBook"
+import { Map } from "./Iframe_Apps/Map"
 
  
 export const apps = [
@@ -73,6 +74,17 @@ export const apps = [
     }),
     component: React.createElement(NoteBook),
     defaultSize: { width: 300, height: 400 },
+  },
+  {
+    id: "map",
+    title: "Map",
+    icon: React.createElement("img", {
+      src: "/Logo/location.png",
+      alt: "Calculos",
+      width: 34,
+    }),
+    component: React.createElement(Map),
+    defaultSize: { width: 500, height: 400 },
   },
   
 ]
