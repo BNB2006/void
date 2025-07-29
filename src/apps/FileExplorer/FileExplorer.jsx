@@ -472,6 +472,10 @@ export function FileExplorer(){
         )}
       </div>
 
+      <div className="flex items-center justify-between bg-gray-100 p-1 border-t text-xs text-gray-600">
+        <span>{Object.keys(currentItems).length} Items</span>
+        {selectedItems.length > 0 && <span>{selectedItems.length} Selected</span>}
+      </div>
 
       {showPreview && previewFile &&(
         <div className="absolute inset-0 bg-black/80 flex items-center justify-center p-4">
