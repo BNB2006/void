@@ -67,7 +67,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
 
         <div className="flex items-center">
           <button
-            className="p-2 hover:bg-gray-300 " 
+            className="p-3 hover:bg-gray-300 " 
             onClick={(e) => {
               e.stopPropagation()
               onMinimize()
@@ -77,7 +77,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
           </button>
 
           <button
-            className="p-2 hover:bg-gray-300"
+            className="p-3 hover:bg-gray-300"
             onClick={(e) => {
               e.stopPropagation()
               onMaximize()
@@ -87,7 +87,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
           </button>
 
           <button
-            className="p-2 hover:bg-red-300 hover:text-red-600"
+            className="p-3 hover:bg-red-300 hover:text-red-600"
             onClick={(e) => {
               e.stopPropagation()
               onClose()

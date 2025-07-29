@@ -4,6 +4,7 @@ import { Terminal } from "./Terminal/Terminal"
 import { FileExplorer } from "./FileExplorer/FileExplorer"
 import {  Google } from "./Iframe_Apps/Google"
 import { VSCode } from "./Iframe_Apps/VSCode"
+import { NoteBook } from "./NoteBook/NoteBook"
 
  
 export const apps = [
@@ -60,6 +61,17 @@ export const apps = [
       width: 34,
     }),
     component: React.createElement(Calculator),
+    defaultSize: { width: 300, height: 400 },
+  },
+  {
+    id: "noteBook",
+    title: "NoteBook",
+    icon: React.createElement("img", {
+      src: "/Logo/book.png",
+      alt: "Calculos",
+      width: 34,
+    }),
+    component: React.createElement(NoteBook),
     defaultSize: { width: 300, height: 400 },
   },
   
