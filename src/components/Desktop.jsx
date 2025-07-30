@@ -14,7 +14,7 @@ export function Desktop() {
   return (
     <div className="w-screen h-screen text-white p-4 bg-[url(https://images.pexels.com/photos/1172675/pexels-photo-1172675.jpeg)] bg-cover bg-center">
       {/* Desktop Icons Grid */}
-      <div className="absolute top-4 left-4 grid grid-cols-5 gap-4">
+      <div className="absolute h- top-4 left-4 grid grid-cols-2 grid-rows-7 gap-4">
         {apps.map((app) => (
           <div
             key={app.id}

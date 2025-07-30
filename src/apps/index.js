@@ -6,6 +6,7 @@ import {  Google } from "./Iframe_Apps/Google"
 import { VSCode } from "./Iframe_Apps/VSCode"
 import { NoteBook } from "./NoteBook/NoteBook"
 import { Map } from "./Iframe_Apps/Map"
+import { Browser } from "./Browser/Browser"
 
  
 export const apps = [
@@ -85,6 +86,17 @@ export const apps = [
     }),
     component: React.createElement(Map),
     defaultSize: { width: 500, height: 400 },
+  },
+  {
+    id: "browser",
+    title: "browser",
+    icon: React.createElement("img", {
+      src: "https://cdn-icons-png.flaticon.com/128/4116/4116480.png",
+      alt: "Calculos",
+      width: 34,
+    }),
+    component: React.createElement(Browser),
+    defaultSize: { width: 600, height: 400 },
   },
   
 ]
