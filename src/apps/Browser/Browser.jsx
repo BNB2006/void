@@ -1,4 +1,4 @@
-import {  Globe2, Plus, X, LockKeyhole, Search, Globe,  } from "lucide-react"
+import {  Globe2, Plus, X, LockKeyhole, Search, Globe, ArrowLeft, ArrowRight, RotateCcw, Bookmark, History, Settings,  } from "lucide-react"
 import { useRef, useState, useEffect } from "react"
 
 export function Browser(){
@@ -111,6 +111,16 @@ export function Browser(){
     }
   }
 
+  const refresh = () => {
+    const activeTab = getActiveTab();
+    if(activeTab){
+      updateTab(activeTab, {isLoading: true});
+      if(iframeRef.current){
+        iframeRef.current.src = activeTab.url;
+      }
+    }
+  }
+
   useEffect(() => {
     const activeTab = getActiveTab()
     if (activeTab) {
@@ -162,7 +172,12 @@ export function Browser(){
         </div>
       </div>
 
-      <div className="p-2 bg-gray-50 border-b">
+      <div className="p-1 bg-gray-50 border-b flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <button disabled className="p-1 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed" title="Back"><ArrowLeft size={16}/></button>
+          <button disabled className="p-1 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed" title="Forward"><ArrowRight size={16}/></button>
+          <button onClick={refresh} className="p-1 rounded hover:bg-gray-200" title="Refresh"><RotateCcw size={16}/></button>
+        </div>
 
         <form onSubmit={handleAddressBarSubmit} className="flex-1 flex items-center">
           <div className="flex items-center flex-1 bg-white border rounded-full px-3 py-1">
@@ -181,6 +196,12 @@ export function Browser(){
             </button>
           </div>
         </form>
+
+        <div className="flex items-center gap-1">
+          <button className="p-1 rounded hover:bg-gray-200" title="Bookmark"><Bookmark size={16}/></button>
+          <button className="p-1 rounded hover:bg-gray-200" title="History"><History size={16}/></button>
+          <button className="p-1 rounded hover:bg-gray-200" title="Settings"><Settings size={16}/></button>
+        </div>
 
       </div>
 
