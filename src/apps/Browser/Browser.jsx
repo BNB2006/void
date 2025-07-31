@@ -16,6 +16,14 @@ export function Browser(){
     const [nextTabId, setNextTabId] = useState(2);
     const iframeRef = useRef(null)
 
+    const [showHistory, setShowHistory] = useState(false)
+    const [history, setHistory] = useState([{id: 1, title: "Google", url: "https://www.google.com", visitedAt: new Date().toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"})},])
+
+    const toggleHistory = () => {
+      setShowHistory(!showHistory)
+      console.log(history)
+    }
+
     const getActiveTab = () => {
         return tabs.find((tab) => tab.id === activeTabId)
     }
@@ -90,6 +98,16 @@ export function Browser(){
         isLoading: true,
         title: "Loading...",
       })
+
+      setHistory((prev) => [
+        {
+          id: prev+1,
+          title: getDomain(formattedUrl),
+          url: formattedUrl,
+          visitedAt: new Date().toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"}),
+        },
+        ...prev.slice(0, 99),
+      ])
     }
 
     setAddressBarValue(formattedUrl)
@@ -199,7 +217,7 @@ export function Browser(){
 
         <div className="flex items-center gap-1 text-[#D590F7]">
           <button className="p-1 rounded hover:bg-[#13052A]" title="Bookmark"><Bookmark size={16}/></button>
-          <button className="p-1 rounded hover:bg-[#13052A]" title="History"><History size={16}/></button>
+          <button onClick={toggleHistory} className="p-1 rounded hover:bg-[#13052A]" title="History"><History size={16}/></button>
           <button className="p-1 rounded hover:bg-[#13052A]" title="Settings"><Settings size={16}/></button>
         </div>
 
@@ -236,6 +254,28 @@ export function Browser(){
             </div>
           )}
         </div>
+
+        {showHistory && (
+          <div className="absolute right-10 top-33 w-70 h-100 bg-gray-900 border-2 overflow-y-auto">
+
+            <div className="p-3 border-b">
+              <h3 className="font-medium text-sm">History</h3>
+            </div>
+            <div className="p-2">
+              {history.map((item) => (
+                <div key={item.id} onClick={() => navigateToUrl(item.url)} className="flex items-center justify-between p-2 rounded hover:bg-gray-700 cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <Globe size={12}/>
+                    <p>{item.title}</p>
+                  </div>
+                  <div>{item.visitedAt}</div>
+                </div>
+              ))}
+            </div>
+
+
+        </div>
+        )}
       </div>
 
 
