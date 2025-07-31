@@ -89,9 +89,9 @@ export const apps = [
   },
   {
     id: "browser",
-    title: "browser",
+    title: "Sharingan",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/4116/4116480.png",
+      src: "/Logo/sharigan.png",
       alt: "Calculos",
       width: 34,
     }),

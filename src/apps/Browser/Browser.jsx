@@ -131,15 +131,15 @@ export function Browser(){
   const activeTab = getActiveTab()
 
     return (
-        <div className="w-full h-full flex flex-col bg-white">
-            <div className="flex items-center bg-gray-100 border-b">
+        <div className="w-full h-full flex flex-col bg-white text-white">
+            <div className="flex items-center bg-[#190423]">
         <div className="flex items-center flex-1 overflow-x-auto">
           {tabs.map((tab) => (
             <div
               key={tab.id}
               className={`
                 flex items-center gap-2 px-3 py-2 border-r cursor-pointer min-w-0 max-w-48
-                ${tab.id === activeTabId ? "bg-white border-b-2 border-blue-500" : "hover:bg-gray-200"}
+                ${tab.id === activeTabId ? "bg-[#310049] rounded-t" : "hover:bg-[#2F0642] border-b"}
               `}
               onClick={() => switchTab(tab.id)}
             >
@@ -147,7 +147,7 @@ export function Browser(){
               {tab.isLoading ? (
                 <div className="w-3 h-3 border border-blue-500 border-t-transparent rounded-full animate-spin" />
               ) : (
-                <Globe2 size={12} className="text-gray-500 flex-shrink-0" />
+                <Globe size={12} className="text-blue-400 flex-shrink-0" />
               )}
 
               <span className="text-sm truncate flex-1">{tab.title}</span>
@@ -158,7 +158,7 @@ export function Browser(){
                     e.stopPropagation()
                     closeTab(tab.id)
                   }}
-                  className="p-1 hover:bg-gray-300 rounded"
+                  className="p-1 hover:bg-[#13052A] rounded"
                 >
                   <X size={10} />
                 </button>
@@ -166,22 +166,22 @@ export function Browser(){
             </div>
           ))}
 
-          <button onClick={() => createNewTab()} className="p-2 hover:bg-gray-200 border-r" title="New Tab">
+          <button onClick={() => createNewTab()} className="p-2 border-b hover:bg-[#13052A]" title="New Tab">
             <Plus size={14} />
           </button>
         </div>
       </div>
 
-      <div className="p-1 bg-gray-50 border-b flex items-center gap-2">
-        <div className="flex items-center gap-1">
-          <button disabled className="p-1 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed" title="Back"><ArrowLeft size={16}/></button>
-          <button disabled className="p-1 rounded hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed" title="Forward"><ArrowRight size={16}/></button>
-          <button onClick={refresh} className="p-1 rounded hover:bg-gray-200" title="Refresh"><RotateCcw size={16}/></button>
+      <div className="p-1 bg-[#310049] border-b flex items-center gap-2">
+        <div className="flex items-center gap-1 text-[#D590F7]">
+          <button disabled className="p-1 rounded hover:bg-[#13052A] disabled:opacity-50 disabled:cursor-not-allowed" title="Back"><ArrowLeft size={16}/></button>
+          <button disabled className="p-1 rounded hover:bg-[#13052A] disabled:opacity-50 disabled:cursor-not-allowed" title="Forward"><ArrowRight size={16}/></button>
+          <button onClick={refresh} className="p-1 rounded hover:bg-[#13052A]" title="Refresh"><RotateCcw size={16}/></button>
         </div>
 
         <form onSubmit={handleAddressBarSubmit} className="flex-1 flex items-center">
-          <div className="flex items-center flex-1 bg-white border rounded-full px-3 py-1">
-            <div className="hover:bg-gray-400 p-1.5 rounded-full text-center mr-2"><LockKeyhole size={14} className="" /></div>
+          <div className="flex items-center flex-1 bg-[#13052A] border-2 border-[#D590F7] rounded-full px-3 py-1">
+            <div className="hover:bg-[#D590F7] p-1.5 rounded-full text-center mr-2"><LockKeyhole size={14} className="" /></div>
 
             <input
               type="text"
@@ -191,16 +191,16 @@ export function Browser(){
               placeholder="Search or enter web address"
             />
 
-            <button type="submit" className="p-2 hover:bg-gray-300 rounded-full">
-              <Search size={14} className="text-blue-500"/>
+            <button type="submit" className="p-2 hover:bg-[#D590F7] rounded-full">
+              <Search size={14}/>
             </button>
           </div>
         </form>
 
-        <div className="flex items-center gap-1">
-          <button className="p-1 rounded hover:bg-gray-200" title="Bookmark"><Bookmark size={16}/></button>
-          <button className="p-1 rounded hover:bg-gray-200" title="History"><History size={16}/></button>
-          <button className="p-1 rounded hover:bg-gray-200" title="Settings"><Settings size={16}/></button>
+        <div className="flex items-center gap-1 text-[#D590F7]">
+          <button className="p-1 rounded hover:bg-[#13052A]" title="Bookmark"><Bookmark size={16}/></button>
+          <button className="p-1 rounded hover:bg-[#13052A]" title="History"><History size={16}/></button>
+          <button className="p-1 rounded hover:bg-[#13052A]" title="Settings"><Settings size={16}/></button>
         </div>
 
       </div>
@@ -210,10 +210,10 @@ export function Browser(){
           {activeTab ? (
             <>
               {activeTab.isLoading && (
-                <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+                <div className="absolute inset-0 bg-violet-300 flex items-center justify-center z-10">
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-                    <span className="text-sm text-gray-600">Loading...</span>
+                    <div className="w-4 h-4 border-2 border-[#13052A] border-t-transparent rounded-full animate-spin" />
+                    <span className="text-xl text-[#D590F7]">Loading...</span>
                   </div>
                 </div>
               )}
@@ -228,7 +228,7 @@ export function Browser(){
               />
             </>
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-500">
+            <div className="flex items-center justify-center h-full text-violet-500">
               <div className="text-center">
                 <Globe size={48} className="mx-auto mb-2 opacity-50" />
                 <div>No active tab</div>
