@@ -50,7 +50,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
         className="
           drag-handle 
           flex items-center justify-between
-          bg-gray-200
+          bg-black/70 text-white
           border-b  
           cursor-grab 
           active:cursor-grabbing
@@ -67,7 +67,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
 
         <div className="flex items-center">
           <button
-            className="p-3 hover:bg-gray-300 " 
+            className="p-3 hover:bg-gray-900 " 
             onClick={(e) => {
               e.stopPropagation()
               onMinimize()
@@ -77,7 +77,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
           </button>
 
           <button
-            className="p-3 hover:bg-gray-300"
+            className="p-3 hover:bg-gray-900"
             onClick={(e) => {
               e.stopPropagation()
               onMaximize()
@@ -87,7 +87,7 @@ export function Window({id, title, icon, children, position, size, isMaximized, 
           </button>
 
           <button
-            className="p-3 hover:bg-red-300 hover:text-red-600"
+            className="p-3 hover:bg-red-700 hover:text-black"
             onClick={(e) => {
               e.stopPropagation()
               onClose()
