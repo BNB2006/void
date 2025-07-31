@@ -1,5 +1,5 @@
-import { Globe2, Plus, X } from "lucide-react";
-import { useRef, useState } from "react"
+import {  Globe2, Plus, X, LockKeyhole, Search, Globe,  } from "lucide-react"
+import { useRef, useState, useEffect } from "react"
 
 export function Browser(){
     const [addressBarValue, setAddressBarValue] = useState("https://www.google.com/search?igu=1");
@@ -8,7 +8,7 @@ export function Browser(){
             id:1,
             url: "https://www.google.com/search?igu=1",
             title: "Google",
-            isLoadin: false,
+            isLoading: false,
         },
     ]);
 
@@ -34,8 +34,6 @@ export function Browser(){
         url: url,
         title: "New Tab",
         isLoading: true,
-        canGoBack: false,
-        canGoForward: false,
         }
 
         setTabs((prev) => [...prev, newTab])
@@ -57,7 +55,7 @@ export function Browser(){
       }
     }
   }
-    
+
     const switchTab = (tabId) => {
         setActiveTabId(tabId)
         const tab = tabs.find((t) => t.id === tabId)
@@ -67,20 +65,62 @@ export function Browser(){
   }
     
     const updateTab = (tabId, updates) => {
-        setTabs((prev) => prev.map((tab) => (tab.id === tabId ? { ... prev, ...updates} : tab)))
+      setTabs((prev) => prev.map((tab) => (tab.id === tabId ? { ...tab, ...updates } : tab)))
     }
 
-    const handleIframeLoad = () => {
-        const activeTab = getActiveTab()
-        if(activeTab){
-            updateTab(activeTab.id, {
-                isLoadin:false,
-                title: getDomain(activeTab.url),
-            })
-        }
+    const formatUrl = (input) => {
+    if (!input.includes(".") && !input.startsWith("http")) {
+      return `https://www.google.com/search?q=${encodeURIComponent(input)}`
     }
-    
-    return(
+
+    if (!input.startsWith("http://") && !input.startsWith("https://")) {
+      return `https://${input}`
+    }
+
+    return input
+  }
+
+  const navigateToUrl = (url) => {
+    const formattedUrl = formatUrl(url)
+    const activeTab = getActiveTab()
+
+    if (activeTab) {
+      updateTab(activeTab.id, {
+        url: formattedUrl,
+        isLoading: true,
+        title: "Loading...",
+      })
+    }
+
+    setAddressBarValue(formattedUrl)
+  }
+
+  const handleAddressBarSubmit = (e) => {
+    e.preventDefault()
+    navigateToUrl(addressBarValue)
+  }
+
+
+  const handleIframeLoad = () => {
+    const activeTab = getActiveTab()
+    if (activeTab) {
+      updateTab(activeTab.id, {
+        isLoading: false,
+        title: getDomain(activeTab.url),
+      })
+    }
+  }
+
+  useEffect(() => {
+    const activeTab = getActiveTab()
+    if (activeTab) {
+      setAddressBarValue(activeTab.url)
+    }
+  }, [activeTabId, tabs])
+
+  const activeTab = getActiveTab()
+
+    return (
         <div className="w-full h-full flex flex-col bg-white">
             <div className="flex items-center bg-gray-100 border-b">
         <div className="flex items-center flex-1 overflow-x-auto">
@@ -122,29 +162,62 @@ export function Browser(){
         </div>
       </div>
 
+      <div className="p-2 bg-gray-50 border-b">
 
-            <form className="bg-red-400 flex-1 flex items-center">
-                <div className="flex items-center flex-1 bg-white border  rounded-full px-3 py-1">
-                    <input type="text" 
-                        value={addressBarValue} 
-                        onChange={(e) => setAddressBarValue(e.target.value)} 
-                        className="border"
-                    />
+        <form onSubmit={handleAddressBarSubmit} className="flex-1 flex items-center">
+          <div className="flex items-center flex-1 bg-white border rounded-full px-3 py-1">
+            <div className="hover:bg-gray-400 p-1.5 rounded-full text-center mr-2"><LockKeyhole size={14} className="" /></div>
 
-                    <button type="submit" className="p-1 hover:bg-gray-100 rounded">
-                        🔍
-                    </button>
+            <input
+              type="text"
+              value={addressBarValue}
+              onChange={(e) => setAddressBarValue(e.target.value)}
+              className="flex-1 outline-none text-sm"
+              placeholder="Search or enter web address"
+            />
+
+            <button type="submit" className="p-2 hover:bg-gray-300 rounded-full">
+              <Search size={14} className="text-blue-500"/>
+            </button>
+          </div>
+        </form>
+
+      </div>
+
+      <div className="flex-1 flex">
+        <div className="flex-1 relative">
+          {activeTab ? (
+            <>
+              {activeTab.isLoading && (
+                <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                    <span className="text-sm text-gray-600">Loading...</span>
+                  </div>
                 </div>
-            </form>
+              )}
 
-            <div className="bg-amber-300 w-full h-full">
-                <iframe 
-                    ref={iframeRef}
-                    src={addressBarValue}
-                    onLoad={handleIframeLoad}
-                    className="w-full h-full"
-                    frameBorder="0">Content</iframe>
+              <iframe
+                ref={iframeRef}
+                src={activeTab.url}
+                className="w-full h-full border-none"
+                onLoad={handleIframeLoad}
+                title={`Tab ${activeTab.id}`}
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+              />
+            </>
+          ) : (
+            <div className="flex items-center justify-center h-full text-gray-500">
+              <div className="text-center">
+                <Globe size={48} className="mx-auto mb-2 opacity-50" />
+                <div>No active tab</div>
+              </div>
             </div>
+          )}
         </div>
-    )
+      </div>
+
+
+    </div>
+  )
 }
