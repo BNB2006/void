@@ -1,13 +1,22 @@
 import { ArrowRight, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-export function HomePage(){
+
+export function HomePage({ onNavigate }){
     const [currentTime, setcurrentTime] = useState(new Date())
+    const [searchInput, setSearchInput] = useState("")
 
     useEffect(() => {
     const timer = setInterval(() => setcurrentTime(new Date()), 1000)
     return () => clearInterval(timer)
   }, []);
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    if (searchInput.trim()) {
+      onNavigate(searchInput.trim())
+      setSearchInput("")
+    }
+  }
 
     return(
         <div className="bg-[url(https://wallpaperaccess.com/full/14672884.jpg)] bg-cover bg-center w-full h-full">
@@ -17,11 +26,11 @@ export function HomePage(){
                     <p>{currentTime.toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"})}</p>
                 </div>
 
-                <div className="flex items-center bg-black/40 rounded">
-                    <input type="text" className=" p-2 w-100 outline-none" placeholder="Search Sharingan or Enter URl"/>
-                    <button className="p-2 border-l"><Search/></button>
-                </div>
-                {/* <div>Cards</div> */}
+                <form onSubmit={handleSearchSubmit} className="flex items-center bg-black/40 rounded">
+                    <input type="text" className="p-2 w-100 outline-none" placeholder="Search Sharingan or Enter URL" alue={searchInput} onChange={(e) => setSearchInput(e.target.value)}/>
+                    <button type="submit" className="p-2 hover:text-violet-600 border-l border-white"><Search/></button>
+                </form>
+                
             </div>
         </div>
     )

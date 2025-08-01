@@ -42,13 +42,13 @@ export function Browser(){
         id: nextTabId,
         url: "",
         title: "New Tab",
-        isLoading: true,
+        isLoading: false,
         }
 
         setTabs((prev) => [...prev, newTab])
         setActiveTabId(nextTabId)
         setNextTabId((prev) => prev + 1)
-        setAddressBarValue(url)
+        setAddressBarValue("")
   }
 
   const closeTab = (tabId) => {
@@ -185,7 +185,7 @@ export function Browser(){
             </div>
           ))}
 
-          <button onClick={() => createNewTab()} className="p-2 border-b hover:bg-[#13052A]" title="New Tab">
+          <button onClick={() => createNewTab()} className="p-2.5 border-b hover:bg-[#13052A]" title="New Tab">
             <Plus size={14} />
           </button>
         </div>
@@ -238,7 +238,7 @@ export function Browser(){
               )}
 
               {activeTab.url === "" ? (
-                <HomePage/>
+                <HomePage onNavigate={navigateToUrl}/>
               ) : (
                 <iframe
                 ref={iframeRef}
