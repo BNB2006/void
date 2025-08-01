@@ -11,26 +11,15 @@ import { Browser } from "./Browser/Browser"
  
 export const apps = [
   {
-    id: "Google",
-    title: "Google",
+    id: "tor",
+    title: "Tor",
     icon: React.createElement("img", {
-      src: "/Logo/google.png",
-      alt: "Goggle",
+      src: "/Logo/tor.png",
+      alt: "Calculos",
       width: 34,
     }),
-    component: React.createElement(Google),
-    defaultSize: { width: 700, height: 400 },
-  },
-  {
-    id: "terminal",
-    title: "Terminal",
-    icon: React.createElement("img", {
-      src: "/Logo/terminal.png",
-      alt: "Terminal logo",
-      width: 34,
-    }),
-    component: React.createElement(Terminal),
-    defaultSize: { width: 400, height: 300 },
+    component: React.createElement(Browser),
+    defaultSize: { width: 600, height: 400 },
   },
   {
     id: "fileExplorer",
@@ -44,15 +33,26 @@ export const apps = [
     defaultSize: { width: 500, height: 350 },
   },
   {
-    id: "vsCode",
-    title: "VS Code",
+    id: "noteBook",
+    title: "NoteBook",
     icon: React.createElement("img", {
-      src: "/Logo/vs-code.svg",
-      alt: "VS code",
+      src: "/Logo/book.png",
+      alt: "Calculos",
       width: 34,
     }),
-    component: React.createElement(VSCode),
-    defaultSize: { width: 600, height: 400 },
+    component: React.createElement(NoteBook),
+    defaultSize: { width: 300, height: 400 },
+  },
+  {
+    id: "terminal",
+    title: "Terminal",
+    icon: React.createElement("img", {
+      src: "/Logo/terminal.png",
+      alt: "Terminal logo",
+      width: 34,
+    }),
+    component: React.createElement(Terminal),
+    defaultSize: { width: 400, height: 300 },
   },
   {
     id: "calculator",
@@ -66,15 +66,26 @@ export const apps = [
     defaultSize: { width: 300, height: 400 },
   },
   {
-    id: "noteBook",
-    title: "NoteBook",
+    id: "vsCode",
+    title: "VS Code",
     icon: React.createElement("img", {
-      src: "/Logo/book.png",
-      alt: "Calculos",
+      src: "/Logo/vs-code.svg",
+      alt: "VS code",
       width: 34,
     }),
-    component: React.createElement(NoteBook),
-    defaultSize: { width: 300, height: 400 },
+    component: React.createElement(VSCode),
+    defaultSize: { width: 600, height: 400 },
+  },
+  {
+    id: "Google",
+    title: "Google",
+    icon: React.createElement("img", {
+      src: "/Logo/google.png",
+      alt: "Goggle",
+      width: 34,
+    }),
+    component: React.createElement(Google),
+    defaultSize: { width: 700, height: 400 },
   },
   {
     id: "map",
@@ -87,17 +98,7 @@ export const apps = [
     component: React.createElement(Map),
     defaultSize: { width: 500, height: 400 },
   },
-  {
-    id: "browser",
-    title: "Sharingan",
-    icon: React.createElement("img", {
-      src: "/Logo/sharigan.png",
-      alt: "Calculos",
-      width: 34,
-    }),
-    component: React.createElement(Browser),
-    defaultSize: { width: 600, height: 400 },
-  },
+  
   
 ]
 
