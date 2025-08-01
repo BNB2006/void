@@ -1,13 +1,14 @@
 import {  Globe2, Plus, X, LockKeyhole, Search, Globe, ArrowLeft, ArrowRight, RotateCcw, Bookmark, History, Settings,  } from "lucide-react"
 import { useRef, useState, useEffect } from "react"
+import { BrowserHome } from "./browserHome";
 
 export function Browser(){
-    const [addressBarValue, setAddressBarValue] = useState("https://www.google.com/search?igu=1");
+    const [addressBarValue, setAddressBarValue] = useState("");
     const [tabs, setTabs] = useState([
         {
             id:1,
-            url: "https://www.google.com/search?igu=1",
-            title: "Google",
+            url: "",
+            title: "New Tab",
             isLoading: false,
         },
     ]);
@@ -36,10 +37,10 @@ export function Browser(){
         }
     }
 
-    const createNewTab = (url = "https://www.google.com") => {
+    const createNewTab = () => {
         const newTab = {
         id: nextTabId,
-        url: url,
+        url: "",
         title: "New Tab",
         isLoading: true,
         }
@@ -236,7 +237,10 @@ export function Browser(){
                 </div>
               )}
 
-              <iframe
+              {activeTab.url === "" ? (
+                <BrowserHome/>
+              ) : (
+                <iframe
                 ref={iframeRef}
                 src={activeTab.url}
                 className="w-full h-full border-none"
@@ -244,6 +248,7 @@ export function Browser(){
                 title={`Tab ${activeTab.id}`}
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
               />
+              )}
             </>
           ) : (
             <div className="flex items-center justify-center h-full text-violet-500">
