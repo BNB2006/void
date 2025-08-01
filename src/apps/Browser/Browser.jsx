@@ -1,6 +1,6 @@
 import {  Globe2, Plus, X, LockKeyhole, Search, Globe, ArrowLeft, ArrowRight, RotateCcw, Bookmark, History, Settings,  } from "lucide-react"
-import { useRef, useState, useEffect } from "react"
-import { BrowserHome } from "./browserHome";
+import { useRef, useState, useEffect } from "react";
+import { HomePage } from "./HomePage";
 
 export function Browser(){
     const [addressBarValue, setAddressBarValue] = useState("");
@@ -238,7 +238,7 @@ export function Browser(){
               )}
 
               {activeTab.url === "" ? (
-                <BrowserHome/>
+                <HomePage/>
               ) : (
                 <iframe
                 ref={iframeRef}

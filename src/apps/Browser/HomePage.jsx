@@ -1,6 +1,6 @@
 import { ArrowRight, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-export function BrowserHome(){
+export function HomePage(){
     const [currentTime, setcurrentTime] = useState(new Date())
 
     useEffect(() => {
