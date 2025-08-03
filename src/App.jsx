@@ -1,6 +1,6 @@
 
 import { Desktop } from "./components/Desktop"
-import { Taskbar } from "./components/Taskbar"
+import { Taskbar } from "./components/Taskbar/Taskbar"
 import { WindowManager } from "./components/WindowManager/WindowManager"
 
 function App() {
