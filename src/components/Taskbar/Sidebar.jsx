@@ -1,48 +1,8 @@
 import { CloudSun, BatteryMedium, Headphones, Sun, Cpu, Power, RefreshCcw, Lock, Moon, LogOut, ThermometerSunIcon, SkipBack, Play, SkipForward, Pause } from "lucide-react"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-export function Sidebar(){
+export function Sidebar({ spotify, currentSong, isPlaying, onPlayPause, onNext, onBack }) {
     const [currentTime, setCurrentTime] = useState(new Date())
-    const [spotify, setSpotify] = useState([
-        { song: "Gone Gone Gone", imgUrl: "/assets/image/song1.jpg", songUrl: "/assets/audio/Phillip.mp3"},
-        { song: "We dont talk", imgUrl: "/assets/image/song2.jpeg", songUrl: "/assets/audio/we-dont-talk-anymore.mp3"}
-    ]);
-
-    const [currentSong, setCurrentSong] = useState(0)
-    const songRef = useRef(null)
-    const [isPlaying, setIsPlaying] = useState(false)
-
-    const handlePlayPause = () => {
-        const song = songRef.current;
-        if(!song) return;
-
-        if(isPlaying){
-            song.pause();
-            setIsPlaying(false)
-        }else{
-            song.play();
-            setIsPlaying(true);
-        }
-        console.log(song)
-    }
-
-    const handleBack = () => {
-        setCurrentSong((prev) => prev === 0 ? spotify.length - 1 : prev -1 )
-        setIsPlaying(true)
-    }
-    
-    const handleNext = () => {
-        setCurrentSong((prev) => (prev + 1) % spotify.length)
-        setIsPlaying(true);
-
-    }
-
-    useEffect(() => {
-        if(songRef.current){
-            songRef.current.load();
-            if(isPlaying) songRef.current.play();
-        }
-    }, [currentSong])
 
     useEffect(() => {
       const timer = setInterval(() => {
@@ -53,9 +13,9 @@ export function Sidebar(){
         clearInterval(timer)
       }
     }, [])
-    
 
-    return(
+
+  return(
         <div className="absolute right-2 bottom-15 w-70">
 
             <div className="py-1">
@@ -86,20 +46,21 @@ export function Sidebar(){
               </div>
             </div>
 
-            <div className="py-1">
-              <div className=" bg-gray-900 flex gap-2 p-3 rounded-md">
-                <div className="w-15 "><img src={spotify[currentSong].imgUrl} alt="" className="rounded" /></div>
-                <div className="flex flex-col items-center justify-center px-5">
-                  <div className="text-sm text-red-200">{spotify[currentSong].song}</div>
-                  <div className="flex items-center gap-3 mt-2">
-                    <button onClick={handleBack}><SkipBack/></button>
-                    <button onClick={handlePlayPause}>{isPlaying ? <Pause className="text-red-400"/> : <Play className="text-red-400"/>}</button>
-                    <button onClick={handleNext}><SkipForward/></button>
-                  </div>
+          <div className="py-1">
+            <div className=" bg-gray-900 flex gap-2 p-3 rounded-md">
+              <div className="w-15"><img src={spotify[currentSong].imgUrl} alt="" className="rounded" /></div>
+              <div className="flex flex-col items-center justify-center px-5">
+                <div className="text-sm text-red-200">{spotify[currentSong].song}</div>
+                <div className="flex items-center gap-3 mt-2">
+                  <button onClick={onBack}><SkipBack /></button>
+                  <button onClick={onPlayPause}>
+                    {isPlaying ? <Pause className="text-red-400" /> : <Play className="text-red-400" />}
+                  </button>
+                  <button onClick={onNext}><SkipForward /></button>
                 </div>
-                <audio ref={songRef} src={spotify[currentSong].songUrl} preload="auto"></audio>
               </div>
             </div>
+          </div>
 
             <div className="py-1">
               <div className=" bg-gray-900 rounded-md p-7">
