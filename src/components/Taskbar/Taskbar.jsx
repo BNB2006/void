@@ -65,7 +65,7 @@ export function Taskbar() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 w-full rounded h-12 bg-black/50 backdrop-blur-sm flex items-center justify-between px-4 text-white">
+    <div className="fixed bottom-0 left-0 w-full rounded h-12 bg-black/50 backdrop-blur-sm flex items-center justify-between px-4 text-white border-t border-gray-900">
       <div><img src="https://img1.picmix.com/output/stamp/normal/5/4/5/3/463545_fd2c9.gif" alt="" className="h-12" /></div>
 
       <div className="flex items-center gap-2">
