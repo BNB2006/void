@@ -69,7 +69,6 @@ export function Taskbar() {
       <div><img src="https://img1.picmix.com/output/stamp/normal/5/4/5/3/463545_fd2c9.gif" alt="" className="h-12" /></div>
 
       <div className="flex items-center gap-2">
-        <div className="w-50"></div>
         {windows.map((window) => (
           <button
             key={window.id}

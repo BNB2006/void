@@ -37,7 +37,7 @@ export function Sidebar({ spotify, currentSong, isPlaying, onPlayPause, onNext, 
             <div className="py-1">
               <div className=" bg-gray-900 rounded-md flex items-center px-9 gap-2 p-2">
                 <div className="w-16 h-16">
-                  <img src="https://cdnl.iconscout.com/lottie/premium/thumb/sand-timer-7081187-5744882.gif" alt="" className="" />
+                  <img src="/assets/image/sand-watch.webp" alt="" className="" />
                 </div>
                 <div className="flex flex-col items-center justify-center">
                 <div className="text-4xl">{currentTime.getHours()} : <span className="text-red-400">{currentTime.getMinutes()}</span></div>

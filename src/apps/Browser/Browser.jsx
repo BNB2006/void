@@ -22,7 +22,6 @@ export function Browser(){
 
     const toggleHistory = () => {
       setShowHistory(!showHistory)
-      console.log(history)
     }
 
     const getActiveTab = () => {
