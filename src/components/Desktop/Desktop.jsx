@@ -1,8 +1,8 @@
 "use client"
 
-import { apps } from "../apps"
-import { useWindowManager } from "./WindowManager/WindowManager"
-
+import { apps } from "../../apps"
+import { useWindowManager } from "../WindowManager/WindowManager"
+import FullscreenButton from "./FullScreenButton"
 
 export function Desktop() {
   const { openWindow } = useWindowManager()
@@ -33,6 +33,9 @@ export function Desktop() {
             <span className="text-xs text-white text-center">{app.title}</span>
           </div>
         ))}
+      </div>
+      <div className="absolute right-7 top-7">
+        <FullscreenButton/>
       </div>
     </div>
   )

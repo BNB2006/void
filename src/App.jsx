@@ -1,5 +1,5 @@
 
-import { Desktop } from "./components/Desktop"
+import { Desktop } from "./components/Desktop/Desktop"
 import { Taskbar } from "./components/Taskbar/Taskbar"
 import { WindowManager } from "./components/WindowManager/WindowManager"
 
