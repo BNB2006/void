@@ -29,7 +29,7 @@ const FullscreenButton = () => {
   };
 
   return (
-    <button onClick={toggleFullscreen} className='hover:text-black'>
+    <button onClick={toggleFullscreen} className='hover:text-black' title='Fullscreen'>
       {fullScreen ? <Minimize/> : <Maximize/> }
     </button>
   );
