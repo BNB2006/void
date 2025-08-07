@@ -126,7 +126,7 @@ export function WindowManager({ children }) {
     )
   }, [])
 
-  // Context value with all window management functions
+  // Context value with
   const contextValue = {
     windows,
     openWindow,
@@ -144,7 +144,7 @@ export function WindowManager({ children }) {
         {children} 
         {windows.map(
           (window) =>
-            !window.isMinimized && ( // Only render if not minimized
+            !window.isMinimized && ( //render if not minimized
               <Window
                 key={window.id}
                 id={window.id}

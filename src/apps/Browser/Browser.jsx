@@ -192,8 +192,8 @@ export function Browser(){
 
       <div className="p-1 bg-[#310049] border-b flex items-center gap-2">
         <div className="flex items-center gap-1 text-[#D590F7]">
-          <button disabled className="p-1 rounded hover:bg-[#13052A] disabled:opacity-50 disabled:cursor-not-allowed" title="Back"><ArrowLeft size={16}/></button>
-          <button disabled className="p-1 rounded hover:bg-[#13052A] disabled:opacity-50 disabled:cursor-not-allowed" title="Forward"><ArrowRight size={16}/></button>
+          <button  className="p-1 rounded hover:bg-[#13052A] opacity-50 cursor-not-allowed" title="Back"><ArrowLeft size={16}/></button>
+          <button  className="p-1 rounded hover:bg-[#13052A] opacity-50 cursor-not-allowed" title="Forward"><ArrowRight size={16}/></button>
           <button onClick={refresh} className="p-1 rounded hover:bg-[#13052A]" title="Refresh"><RotateCcw size={16}/></button>
         </div>
 
@@ -216,9 +216,9 @@ export function Browser(){
         </form>
 
         <div className="flex items-center gap-1 text-[#D590F7]">
-          <button className="p-1 rounded hover:bg-[#13052A]" title="Bookmark"><Bookmark size={16}/></button>
+          <button className="p-1 rounded hover:bg-[#13052A] opacity-50 cursor-not-allowed" title="Bookmark"><Bookmark size={16}/></button>
           <button onClick={toggleHistory} className="p-1 rounded hover:bg-[#13052A]" title="History"><History size={16}/></button>
-          <button className="p-1 rounded hover:bg-[#13052A]" title="Settings"><Settings size={16}/></button>
+          <button className="p-1 rounded hover:bg-[#13052A] opacity-50 cursor-not-allowed" title="Settings"><Settings size={16}/></button>
         </div>
 
       </div>

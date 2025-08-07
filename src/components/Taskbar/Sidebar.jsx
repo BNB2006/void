@@ -100,11 +100,11 @@ export function Sidebar({ spotify, currentSong, isPlaying, onPlayPause, onNext, 
               <div className=" bg-gray-900 rounded-md p-7">
                 <input type="text" className="bg-gray-600 p-1 rounded-md ml-2 text-center outline-none" placeholder="🔍Seach..." />
                 <div className="flex items-center justify-around mt-3">
-                  <Power className="text-red-400"/>
-                  <RefreshCcw className="text-violet-300"/>
-                  <Lock className="text-green-300"/>
-                  <Moon className="text-blue-300"/>
-                  <LogOut className="text-orange-300"/>
+                  <Power className="text-red-400 cursor-not-allowed"/>
+                  <RefreshCcw className="text-violet-300 cursor-not-allowed"/>
+                  <Lock className="text-green-300 cursor-not-allowed"/>
+                  <Moon className="text-blue-300 cursor-not-allowed"/>
+                  <LogOut className="text-orange-300 cursor-not-allowed"/>
                 </div>
               </div>
             </div>
