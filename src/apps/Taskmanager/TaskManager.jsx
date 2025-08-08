@@ -1,13 +1,100 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 
-export function Taskmanager(){
+export function TaskManager(){
     const [option, setOption] = useState("GPU")
+    const [cpuData, setCpuData] = useState([])
+    const [memoryData, setMemoryData] = useState([])
+    const [diskData, setDiskData] = useState([])
+    const [wifiData, setWifiData] = useState([])
+    const [gpuData, setGpuData] = useState({
+        gpu3D: [],
+        copy: [],
+        videoDecode: [],
+        videoProcessing: [],
+        shared: [],
+        dedicated: []
+    })
+
+    useEffect(() => {
+        const generateInitialData = (baseValue, variance = 10, points = 60) => {
+            return Array.from({ length: points }, (_, i) => ({
+                time: i,
+                value: Math.max(0, Math.min(100, baseValue + (Math.random() - 0.5) * variance))
+            }))
+        }
+
+        setCpuData(generateInitialData(27, 15))
+        setMemoryData(generateInitialData(56, 5))
+        setDiskData(generateInitialData(27, 20))
+        setWifiData(generateInitialData(35, 25))
+        setGpuData({
+            gpu3D: generateInitialData(8, 12),
+            copy: generateInitialData(2, 3),
+            videoDecode: generateInitialData(5, 8),
+            videoProcessing: generateInitialData(1, 2),
+            shared: generateInitialData(15, 8),
+            dedicated: generateInitialData(12, 6)
+        })
+    }, [])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const updateData = (prevData, baseValue, variance) => {
+                const newData = [...prevData.slice(1)]
+                const lastValue = prevData[prevData.length - 1]?.value || baseValue
+                const change = (Math.random() - 0.5) * variance
+                const newValue = Math.max(0, Math.min(100, lastValue + change))
+                newData.push({
+                    time: Date.now(),
+                    value: newValue
+                })
+                return newData
+            }
+
+            setCpuData(prev => updateData(prev, 27, 8))
+            setMemoryData(prev => updateData(prev, 56, 3))
+            setDiskData(prev => updateData(prev, 27, 12))
+            setWifiData(prev => updateData(prev, 35, 15))
+            setGpuData(prev => ({
+                gpu3D: updateData(prev.gpu3D, 8, 6),
+                copy: updateData(prev.copy, 2, 2),
+                videoDecode: updateData(prev.videoDecode, 5, 4),
+                videoProcessing: updateData(prev.videoProcessing, 1, 1),
+                shared: updateData(prev.shared, 15, 5),
+                dedicated: updateData(prev.dedicated, 12, 4)
+            }))
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
+
+    const GraphComponent = ({ data, color = "#00ff00", height = "100%" }) => (
+        <ResponsiveContainer width="100%" height={height}>
+            <LineChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                <YAxis domain={[0, 100]} hide />
+                <Line 
+                    type="monotone" 
+                    dataKey="value" 
+                    stroke={color} 
+                    strokeWidth={1}
+                    dot={false}
+                    isAnimationActive={false}
+                />
+            </LineChart>
+        </ResponsiveContainer>
+    )
+
+    const getCurrentValue = (data) => {
+        return data.length > 0 ? Math.round(data[data.length - 1].value) : 0
+    }
 
 
     return(
-        <div className="bg-[#191919] h-full text-white">
+        <div className="bg-[#191919] text-white h-full">
+          <div className="overflow-y-hidden">
             <div className="border-b border-gray-600 p-2">Performance</div>
-            <div className="flex h-160">
+            <div className="flex">
                 <div className="w-[15%] p-2">
                     <div onClick={() => setOption("CPU")} className="p-2 cursor-pointer hover:bg-black/20">
                         <p className="text-2xl">CPU</p>
@@ -15,7 +102,8 @@ export function Taskmanager(){
                     </div>
                     <div onClick={() => setOption("Memory")} className="p-2 cursor-pointer hover:bg-black/20">
                         <p>Memory</p>
-                        <p className="text-sm">9.0/16 GB (56%)</p>
+                        <p className="text-sm">9.0/16 GB (
+                            56%)</p>
                     </div>
                     <div onClick={() => setOption("Disk")} className="p-2 cursor-pointer hover:bg-black/20">
                         <p>Disk</p>
@@ -36,29 +124,82 @@ export function Taskmanager(){
                     <div className="text-xl">{option}</div>
                     {option !== "GPU" ? (
                         <>
-                        <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
-                            
-                        </div>
+                        <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]"></div>
+                        <div>Info</div>
                         </>
                     ) :(
-                        <>
-                        <div className="flex flex-col gap-4">
-                        <div className="flex flex-1 gap-2">
-                            <div class="w-[50%] h-50 border bg-[length:32px_32px] [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">3D</div>
-                            <div className="w-[50%] h-50 border bg-[length:32px_32px] [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">Copy</div>
-                        </div>
-                        <div className="flex flex-1 gap-2">
-                            <div className="w-[50%] h-50 border bg-[length:32px_32px] [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">Video Decode</div>
-                            <div className="w-[50%] h-50 border bg-[length:32px_32px] [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">Video Processing</div>
-                        </div>
-                    </div>
+                         <>
+                            <div className="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <div className="flex  items-center justify-between mb-1 text-xs">
+                                        <p>3D</p>
+                                        <p>{getCurrentValue(gpuData.gpu3D)}%</p>
+                                    </div>
+                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                        <GraphComponent data={gpuData.gpu3D} color="#ff6b35" height="100%" />
+                                    
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div className="flex  items-center justify-between mb-1 text-xs">
+                                        <p className="text-xs">Copy</p>
+                                    <p>{getCurrentValue(gpuData.copy)}%</p>
+                                    </div>
+                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                        <GraphComponent data={gpuData.copy} color="#00f5ff" height="100%" />
+                                </div>
+                                </div>
+                                
+                                <div>
+                                    <div className="flex  items-center justify-between mb-1 text-xs">
+                                        <p>Video Decode</p>
+                                    <p>{getCurrentValue(gpuData.videoDecode)}%</p>
+                                    </div>
+                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                        <GraphComponent data={gpuData.videoDecode} color="#7209b7" height="100%" />
+                                </div>
+                                </div>
+                                
+                                <div>
+                                    <div className="flex  items-center justify-between mb-1 text-xs">
+                                        <p>Video Processing</p>
+                                    <p>{getCurrentValue(gpuData.videoProcessing)}%</p>
+                                    </div>
+                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                        <GraphComponent data={gpuData.videoProcessing} color="#ff1744" height="100%" />
+                                </div>
+                                </div>
+                            </div>
 
-                    <div className="w-[100%] h-30 border bg-[length:32px_32px] [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_7px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]"></div>
+                            <div>
+                                <div className="flex  items-center justify-between mb-1 text-xs">
+                                    <p>Shared GPU memory usage</p>
+                                <p>{getCurrentValue(gpuData.shared)}%</p>
+                                </div>
+                                <div className="h-15 bg-black/20 border border-gray-600 p-2 mb-4 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_12px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_20px)]">
+                                    <GraphComponent data={gpuData.shared} color="#00c851" height="100%" />
+                            </div>
+                            </div>
 
-                    <div className="w-[100%] h-40 border"></div>
+                            <div className="grid grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <p className="text-gray-400">GPU memory</p>
+                                    <p className="text-lg">1.2/4.0 GB</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-400">Shared memory</p>
+                                    <p className="text-lg">2.1/8.0 GB</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-400">Temperature</p>
+                                    <p className="text-lg">39°C</p>
+                                </div>
+                            </div>
                         </>
                     )}
                 </div>
+            </div>
             </div>
         </div>
     )

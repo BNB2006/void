@@ -7,7 +7,7 @@ import { VSCode } from "./Iframe_Apps/VSCode"
 import { NoteBook } from "./NoteBook/NoteBook"
 import { Map } from "./Iframe_Apps/Map"
 import { Browser } from "./Browser/Browser"
-import { Taskmanager } from "./Taskmanager/TaskManager"
+import {TaskManager} from "./Taskmanager/TaskManager"
 
  
 export const apps = [
@@ -63,7 +63,7 @@ export const apps = [
       alt: "Terminal logo",
       width: 34,
     }),
-    component: React.createElement(Taskmanager),
+    component: React.createElement(TaskManager),
     defaultSize: { width: 400, height: 300 },
   },
   {
