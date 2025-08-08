@@ -120,15 +120,138 @@ export function TaskManager(){
                     </div>
                 </div>
 
-                <div className=" flex-1 flex flex-col p-2 gap-2">
-                    <div className="text-xl">{option}</div>
-                    {option !== "GPU" ? (
+                <div className="flex-1 flex flex-col p-4">
+                    {option === "CPU" && (
+                    <>
+                    <div>
+                        <div className="text-xl flex items-center justify-between">
+                        <p>CPU</p>
+                        <p>11th Gen Intel(R) Core(TM) i5-11320 @3.20GHz</p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>% Utilization</p>
+                        <p>{getCurrentValue(cpuData)}%</p>
+                    </div>
+                    <div className="h-60 p-4  border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                        <GraphComponent data={cpuData} color="#00ff41" />   
+                    </div>
+                    <div className="flex items-center justify-between text-gray-400 text-xs">
+                        <p>60 seconds</p>
+                        <p>0</p>
+                    </div>
+
+                    <div className="flex gap-5 mt-4">
+                        <div className="">
+
+                            <div className="flex gap-5">
+                                <div>
+                                    <p className="text-gray-500 text-sm">Utilization</p>
+                                    <p>27%</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Speed</p>
+                                    <p>3.28 GHz</p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-5">
+                                <div>
+                                    <p className="text-gray-500 text-sm">Processes</p>
+                                    <p>311</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Threads</p>
+                                    <p>4785</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Handles</p>
+                                    <p>173463</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-gray-500 text-sm">Up time</p>
+                                <p>15:07:53:22</p>
+                            </div>
+                        </div>
+
+                        <div className=" w-50 flex justify-between">
+                            <div className="text-gray-500 text-sm">
+                                <p>Base speed</p>
+                                <p>Sockets:</p>
+                                <p>Cores:</p>
+                                <p>Logical processors</p>
+                                <p>Virtualization:</p>
+                                <p>L1 cache:</p>
+                                <p>L1 cache:</p>
+                                <p>L1 cache:</p>
+                            </div>
+                            <div className="text-sm">
+                                <p>3.19 GHz</p>
+                                <p>1</p>
+                                <p>4</p>
+                                <p>8</p>
+                                <p>Enabled</p>
+                                <p>320 KB</p>
+                                <p>5.0 MB</p>
+                                <p>8.0 MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </>
+                    )}
+
+                    {option === "Memory" && (
+                    <>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>% Utilization</p>
+                        <p>{getCurrentValue(memoryData)}%</p>
+                    </div>
+                    <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                        <GraphComponent data={memoryData} color="#9d4edd" />   
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>60 seconds</p>
+                        <p>0</p>
+                    </div>
+                    </>
+                    )}
+
+                    {option === "Disk" && (
+                    <>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>% Utilization</p>
+                        <p>{getCurrentValue(diskData)}%</p>
+                    </div>
+                    <div className="w-[100%] h-[70%] p-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                        <GraphComponent data={diskData} color="#ffd60a" />   
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>60 seconds</p>
+                        <p>0</p>
+                    </div>
+                    </>
+                    )}
+
+                    {option === "Wi-Fi" && (
+                    <>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>% Utilization</p>
+                        <p>{getCurrentValue(wifiData)}%</p>
+                    </div>
+                    <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                        <GraphComponent data={wifiData} color="#0077b6" />   
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                        <p>60 seconds</p>
+                        <p>0</p>
+                    </div>
+                    </>
+                    )}
+
+
+                    {option === "GPU" && (
                         <>
-                        <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]"></div>
-                        <div>Info</div>
-                        </>
-                    ) :(
-                         <>
                             <div className="grid grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <div className="flex  items-center justify-between mb-1 text-xs">
