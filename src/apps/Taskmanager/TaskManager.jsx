@@ -128,11 +128,11 @@ export function TaskManager(){
                         <p>CPU</p>
                         <p>11th Gen Intel(R) Core(TM) i5-11320 @3.20GHz</p>
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs mt-1">
                         <p>% Utilization</p>
                         <p>{getCurrentValue(cpuData)}%</p>
                     </div>
-                    <div className="h-60 p-4  border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                    <div className="h-60 pt-4  border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
                         <GraphComponent data={cpuData} color="#00ff41" />   
                     </div>
                     <div className="flex items-center justify-between text-gray-400 text-xs">
@@ -203,16 +203,70 @@ export function TaskManager(){
 
                     {option === "Memory" && (
                     <>
-                    <div className="flex items-center justify-between text-xs">
-                        <p>% Utilization</p>
+                    <div>
+                        <div className="text-xl flex items-center justify-between">
+                        <p>Memory</p>
+                        <p>8.0 GB</p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mt-1">
+                        <p>Memory usage</p>
                         <p>{getCurrentValue(memoryData)}%</p>
                     </div>
-                    <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                    <div className="h-60 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
                         <GraphComponent data={memoryData} color="#9d4edd" />   
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-gray-500">
                         <p>60 seconds</p>
                         <p>0</p>
+                    </div>
+                    <div className="flex gap-5 mt-4">
+                        <div>
+                            <div className="flex gap-5 mt-1">
+                                <div>
+                                    <p className="text-gray-500 text-sm">In use (Compressed)</p>
+                                    <p>7.2 GB (730 MB)</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Available</p>
+                                    <p>625 MB</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 mt-1">
+                                <div>
+                                    <p className="text-gray-500 text-sm">Committed</p>
+                                    <p>16.3/19.4 GB</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Cached</p>
+                                    <p>611 MB</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 mt-1">
+                                <div>
+                                    <p className="text-gray-500 text-sm">Paged pool</p>
+                                    <p>944 MB</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Noon-paged pool</p>
+                                    <p>992 MB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className=" w-50 flex justify-between">
+                            <div className="text-gray-500 text-sm">
+                                <p>Speed</p>
+                                <p>Slots used:</p>
+                                <p>Form factor:</p>
+                                <p>Hardware reserved:</p>
+                            </div>
+                            <div className="text-sm">
+                                <p>3200 MT/s</p>
+                                <p>1 fo 1</p>
+                                <p>SODIMM</p>
+                                <p>217 MB</p>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     </>
                     )}
