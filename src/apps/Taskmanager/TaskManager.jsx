@@ -389,73 +389,107 @@ export function TaskManager(){
 
                     {option === "GPU" && (
                         <>
-                            <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <div className="flex justify-between">
+                                <p>GPU</p>
+                                <p>NAVIDIA GeForce RTX 2050</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4 mb-2">
                                 <div>
-                                    <div className="flex  items-center justify-between mb-1 text-xs">
-                                        <p>3D</p>
-                                        <p>{getCurrentValue(gpuData.gpu3D)}%</p>
+                                    <div className="flex justify-between">
+                                        <p className="text-xs text-gray-500">3D</p>
+                                        <p className="text-xs text-gray-500">{getCurrentValue(gpuData.gpu3D)}%</p>
                                     </div>
-                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                    <div className="h-28 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
                                         <GraphComponent data={gpuData.gpu3D} color="#ff6b35" height="100%" />
                                     
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div className="flex  items-center justify-between mb-1 text-xs">
-                                        <p className="text-xs">Copy</p>
-                                    <p>{getCurrentValue(gpuData.copy)}%</p>
+                                    <div className="flex justify-between">
+                                        <p className="text-xs text-gray-500">Copy</p>
+                                    <p className="text-xs text-gray-500">{getCurrentValue(gpuData.copy)}%</p>
                                     </div>
-                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                    <div className="h-28 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
                                         <GraphComponent data={gpuData.copy} color="#00f5ff" height="100%" />
                                 </div>
                                 </div>
                                 
                                 <div>
-                                    <div className="flex  items-center justify-between mb-1 text-xs">
-                                        <p>Video Decode</p>
-                                    <p>{getCurrentValue(gpuData.videoDecode)}%</p>
+                                    <div className="flex justify-between">
+                                        <p className="text-xs text-gray-500">Video Decode</p>
+                                    <p className="text-xs text-gray-500">{getCurrentValue(gpuData.videoDecode)}%</p>
                                     </div>
-                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                    <div className="h-28 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
                                         <GraphComponent data={gpuData.videoDecode} color="#7209b7" height="100%" />
                                 </div>
                                 </div>
                                 
                                 <div>
-                                    <div className="flex  items-center justify-between mb-1 text-xs">
-                                        <p>Video Processing</p>
-                                    <p>{getCurrentValue(gpuData.videoProcessing)}%</p>
+                                    <div className="flex justify-between">
+                                        <p className="text-xs text-gray-500">Video Processing</p>
+                                    <p className="text-xs text-gray-500">{getCurrentValue(gpuData.videoProcessing)}%</p>
                                     </div>
-                                    <div className="h-28 bg-black/20 border border-gray-600 p-2 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
+                                    <div className="h-28 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_26px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_28px)]">
                                         <GraphComponent data={gpuData.videoProcessing} color="#ff1744" height="100%" />
                                 </div>
                                 </div>
                             </div>
 
                             <div>
-                                <div className="flex  items-center justify-between mb-1 text-xs">
-                                    <p>Shared GPU memory usage</p>
-                                <p>{getCurrentValue(gpuData.shared)}%</p>
+                                <div className="flex justify-between">
+                                    <p className="text-xs text-gray-500">Shared GPU memory usage</p>
+                                <p className="text-xs text-gray-500">{getCurrentValue(gpuData.shared)}%</p>
                                 </div>
-                                <div className="h-15 bg-black/20 border border-gray-600 p-2 mb-4 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_12px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_20px)]">
+                                <div className="h-10 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_12px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_14px)]">
                                     <GraphComponent data={gpuData.shared} color="#00c851" height="100%" />
                             </div>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-4 text-sm">
-                                <div>
-                                    <p className="text-gray-400">GPU memory</p>
-                                    <p className="text-lg">1.2/4.0 GB</p>
+                            <div className="flex gap-5 mt-2">
+                                <div className="text-lg">
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Utilization</p>
+                                        <p>10%</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Gpu Memory</p>
+                                        <p>3.9/7.9 GB</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-gray-400">Shared memory</p>
-                                    <p className="text-lg">2.1/8.0 GB</p>
+                                <div className="text-sm">
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Dedicated GPU memory</p>
+                                        <p>0.0/4.0 GB</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Shared GPU memory</p>
+                                        <p>0.0/3.9 GB</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Temperature</p>
+                                        <p>39 °C</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-gray-400">Temperature</p>
-                                    <p className="text-lg">39°C</p>
-                                </div>
+                                <div className="flex gap-4 mt-1">
+                            <div className="text-gray-500 text-sm">
+                                <p>Driver version:</p>
+                                <p>Driver date:</p>
+                                <p>DirectX version:</p>
+                                <p>Physical location:</p>
+                                <p>Hardware reserved memory:</p>
                             </div>
+                            <div className="text-sm">
+                                <p>32.0.43.7258</p>
+                                <p>25-04-2025</p>
+                                <p>15 (Fl 15.1)</p>
+                                <p>PCI bus 1, device 0, function 0</p>
+                                <p>131 MB</p>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
                         </>
                     )}
                 </div>
