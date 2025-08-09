@@ -1,3 +1,4 @@
+import { Signal, Wifi } from "lucide-react";
 import { useEffect, useState } from "react"
 import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 
@@ -282,7 +283,7 @@ export function TaskManager(){
                         <p>Active time</p>
                         <p>{getCurrentValue(diskData)}%</p>
                     </div>
-                    <div className="h-60 p-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                    <div className="h-60 pt-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
                         <GraphComponent data={diskData} color="#ffd60a" />   
                     </div>
                     <div className="flex items-center justify-between text-xs text-gray-500">
@@ -335,16 +336,52 @@ export function TaskManager(){
 
                     {option === "Wi-Fi" && (
                     <>
-                    <div className="flex items-center justify-between text-xs">
-                        <p>% Utilization</p>
+                    <div>
+                    <div className="text-xl flex items-center justify-between">
+                        <p>Wi-Fi</p>
+                        <p>Intel(R) Wi-Fi AX201 160MHZ</p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mt-1">
+                        <p>Throughtput</p>
                         <p>{getCurrentValue(wifiData)}%</p>
                     </div>
-                    <div className="w-[100%] h-[70%] border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                    <div className="h-60 p-t4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
                         <GraphComponent data={wifiData} color="#0077b6" />   
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-gray-500">
                         <p>60 seconds</p>
                         <p>0</p>
+                    </div>
+                    <div className="flex gap-10 mt-4">
+                        <div className="mt-1 flex flex-col gap-5">
+                            <div className="border-l border-pink-500 border-dashed pl-2">
+                                <p className="text-gray-500 text-sm">send</p>
+                                <p>0 Kbps</p>
+                            </div>
+                            <div className="border-l border-pink-500 pl-2">
+                                <p className="text-gray-500 text-sm">Receive</p>
+                                <p>0 Kbps</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4 mt-1">
+                            <div className="text-gray-500 text-sm">
+                                <p>Adapter name:</p>
+                                <p>SSID:</p>
+                                <p>Connection type:</p>
+                                <p>IPv4 address:</p>
+                                <p>IPv6 address:</p>
+                                <p>Signal strength:</p>
+                            </div>
+                            <div className="text-sm">
+                                <p>Wi-Fi</p>
+                                <p>Void</p>
+                                <p>802.11n</p>
+                                <p>13.157.25.49</p>
+                                <p>2025:50c2:484d:ac30:ef6a:2462:8d84:4d6f</p>
+                                <p><Signal size={20} className="text-pink-500"/></p>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     </>
                     )}
