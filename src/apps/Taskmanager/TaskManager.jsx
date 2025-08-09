@@ -129,7 +129,7 @@ export function TaskManager(){
                         <Gpu size={24} className="ml-2 text-green-500"/>
                         <div className="p-2">
                             <p>GPU</p>
-                            <p className="text-xs">NVIDIA GeForce RTX 2050</p>
+                            <p className="text-xs">NVIDIA GeForce RTX 7050</p>
                             <span className="text-xs">{getCurrentValue(gpuData)}% (39 °C)</span>
                         </div>
                     </div>
@@ -406,7 +406,7 @@ export function TaskManager(){
                         <div>
                             <div className="flex justify-between">
                                 <p>GPU</p>
-                                <p>NAVIDIA GeForce RTX 2050</p>
+                                <p>NAVIDIA GeForce RTX 7050</p>
                             </div>
                             <div className="grid grid-cols-2 gap-4 mb-2">
                                 <div>
