@@ -1,4 +1,4 @@
-import { Signal, Wifi } from "lucide-react";
+import { Cpu, Gpu, MemoryStick, Microchip, Signal, Wifi, WifiIcon } from "lucide-react";
 import { useEffect, useState } from "react"
 import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 
@@ -97,27 +97,41 @@ export function TaskManager(){
             <div className="border-b border-gray-600 p-2">Performance</div>
             <div className="flex">
                 <div className="w-[15%] p-2">
-                    <div onClick={() => setOption("CPU")} className="p-2 cursor-pointer hover:bg-black/20">
-                        <p className="text-2xl">CPU</p>
-                        <p className="text-sm">27% 3.28GHz</p>
+                    <div onClick={() => setOption("CPU")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
+                        <Cpu size={24} className="ml-2 text-red-500"/>
+                        <div className="p-2">
+                            <p className="text-2xl">CPU</p>
+                            <p className="text-xs">{getCurrentValue(cpuData)}% 3.28GHz</p>
+                        </div>
                     </div>
-                    <div onClick={() => setOption("Memory")} className="p-2 cursor-pointer hover:bg-black/20">
-                        <p>Memory</p>
-                        <p className="text-sm">9.0/16 GB (
-                            56%)</p>
+                    <div onClick={() => setOption("Memory")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
+                        <MemoryStick size={24} className="ml-2 text-purple-500"/>
+                        <div className="p-2">
+                            <p>Memory</p>
+                        <p className="text-xs">5.0/8 GB {getCurrentValue(memoryData)}%</p>
+                        </div>
                     </div>
-                    <div onClick={() => setOption("Disk")} className="p-2 cursor-pointer hover:bg-black/20">
-                        <p>Disk</p>
-                        <p className="text-sm">SSD 27%</p>
+                    <div onClick={() => setOption("Disk")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
+                        <Microchip size={24} className="ml-2 text-yellow-500"/>
+                        <div className="p-2">
+                            <p>Disk</p>
+                            <p className="text-xs">SSD {getCurrentValue(diskData)}%</p>
+                        </div>
                     </div>
-                    <div onClick={() => setOption("Wi-Fi")} className="p-2 cursor-pointer hover:bg-black/20">
-                        <p>Wi-Fi</p>
-                        <p className="text-sm">wi-fi 5.5 Mbps</p>
+                    <div onClick={() => setOption("Wi-Fi")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
+                        <WifiIcon size={24} className="ml-2 text-blue-500"/>
+                        <div className="p-2">
+                            <p>Wi-Fi</p>
+                            <p className="text-xs">wi-fi 5.5 Mbps</p>
+                        </div>
                     </div>
-                    <div onClick={() => setOption("GPU")} className="p-2 cursor-pointer hover:bg-black/20">
-                        <p>GPU</p>
-                        <p className="text-sm">NVIDIA GeForce RTX 2050</p>
-                        <span className="text-sm">0% (39 °C)</span>
+                    <div onClick={() => setOption("GPU")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
+                        <Gpu size={24} className="ml-2 text-green-500"/>
+                        <div className="p-2">
+                            <p>GPU</p>
+                            <p className="text-xs">NVIDIA GeForce RTX 2050</p>
+                            <span className="text-xs">{getCurrentValue(gpuData)}% (39 °C)</span>
+                        </div>
                     </div>
                 </div>
 
@@ -134,7 +148,7 @@ export function TaskManager(){
                         <p>{getCurrentValue(cpuData)}%</p>
                     </div>
                     <div className="h-60 pt-4  border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
-                        <GraphComponent data={cpuData} color="#00ff41" />   
+                        <GraphComponent data={cpuData} color="#ff0d00" />   
                     </div>
                     <div className="flex items-center justify-between text-gray-400 text-xs">
                         <p>60 seconds</p>
@@ -262,7 +276,7 @@ export function TaskManager(){
                             </div>
                             <div className="text-sm">
                                 <p>3200 MT/s</p>
-                                <p>1 fo 1</p>
+                                <p>1 of 1</p>
                                 <p>SODIMM</p>
                                 <p>217 MB</p>
                             </div>
@@ -447,7 +461,7 @@ export function TaskManager(){
                             </div>
                             </div>
 
-                            <div className="flex gap-5 mt-2">
+                            <div className="flex gap-5 mt-4">
                                 <div className="text-lg">
                                     <div>
                                         <p className="text-gray-500 text-sm">Utilization</p>
