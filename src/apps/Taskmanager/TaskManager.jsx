@@ -108,7 +108,7 @@ export function TaskManager(){
                         <MemoryStick size={24} className="ml-2 text-purple-500"/>
                         <div className="p-2">
                             <p>Memory</p>
-                        <p className="text-xs">5.0/8 GB {getCurrentValue(memoryData)}%</p>
+                        <p className="text-xs">8/128 GB {getCurrentValue(memoryData)}%</p>
                         </div>
                     </div>
                     <div onClick={() => setOption("Disk")} className="flex items-center gap-2 cursor-pointer hover:bg-black/20">
@@ -141,7 +141,7 @@ export function TaskManager(){
                     <div>
                         <div className="text-xl flex items-center justify-between">
                         <p>CPU</p>
-                        <p>11th Gen Intel(R) Core(TM) i5-11320 @3.20GHz</p>
+                        <p>15th Gen Intel(R) Core(TM) i9-99990 @3.20GHz</p>
                     </div>
                     <div className="flex items-center justify-between text-xs mt-1">
                         <p>% Utilization</p>
@@ -221,7 +221,7 @@ export function TaskManager(){
                     <div>
                         <div className="text-xl flex items-center justify-between">
                         <p>Memory</p>
-                        <p>8.0 GB</p>
+                        <p>128.0 GB</p>
                     </div>
                     <div className="flex items-center justify-between text-xs text-gray-500 mt-1">
                         <p>Memory usage</p>
@@ -239,7 +239,7 @@ export function TaskManager(){
                             <div className="flex gap-5 mt-1">
                                 <div>
                                     <p className="text-gray-500 text-sm">In use (Compressed)</p>
-                                    <p>7.2 GB (730 MB)</p>
+                                    <p>128 GB (24 GB)</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-500 text-sm">Available</p>
@@ -336,8 +336,8 @@ export function TaskManager(){
                                 <p>Type:</p>
                             </div>
                             <div className="text-sm">
-                                <p>477 GB</p>
-                                <p>477 GB</p>
+                                <p>512 TB</p>
+                                <p>512 TB</p>
                                 <p>Yes</p>
                                 <p>Yes</p>
                                 <p>SSD (RAID)</p>
