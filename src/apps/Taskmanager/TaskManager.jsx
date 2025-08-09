@@ -252,7 +252,7 @@ export function TaskManager(){
                                 </div>
                             </div>
                         </div>
-                        <div className=" w-50 flex justify-between">
+                        <div className=" w-50 flex justify-between mt-1">
                             <div className="text-gray-500 text-sm">
                                 <p>Speed</p>
                                 <p>Slots used:</p>
@@ -273,16 +273,62 @@ export function TaskManager(){
 
                     {option === "Disk" && (
                     <>
-                    <div className="flex items-center justify-between text-xs">
-                        <p>% Utilization</p>
+                    <div>
+                    <div className="text-xl flex items-center justify-between">
+                        <p>Disk 0 (C: D)</p>
+                        <p>NVMe SOLIDIHM SSDPFINX512GLZ</p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mt-1">
+                        <p>Active time</p>
                         <p>{getCurrentValue(diskData)}%</p>
                     </div>
-                    <div className="w-[100%] h-[70%] p-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
+                    <div className="h-60 p-4 border [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_32px)]">
                         <GraphComponent data={diskData} color="#ffd60a" />   
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-gray-500">
                         <p>60 seconds</p>
                         <p>0</p>
+                    </div>
+                    <div className="flex gap-5 mt-4">
+                        <div>
+                            <div className="flex gap-5 mt-1">
+                                <div>
+                                    <p className="text-gray-500 text-sm">Active time</p>
+                                    <p>4%</p>
+                                </div>
+                                <div>
+                                    <p className="text-gray-500 text-sm">Average response time</p>
+                                    <p>0.2 ms</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-5 mt-1">
+                                <div className="border-l border-green-500 pl-2">
+                                    <p className="text-gray-500 text-sm">Read speed</p>
+                                    <p>3.8 KB/s</p>
+                                </div>
+                                <div className="border-l border-green-500 border-dashed pl-2">
+                                    <p className="text-gray-500 text-sm">Write speed</p>
+                                    <p>210 KB/s</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className=" w-50 flex justify-between mt-1">
+                            <div className="text-gray-500 text-sm">
+                                <p>Capacity:</p>
+                                <p>Formatted:</p>
+                                <p>System disk:</p>
+                                <p>Page file:</p>
+                                <p>Type:</p>
+                            </div>
+                            <div className="text-sm">
+                                <p>477 GB</p>
+                                <p>477 GB</p>
+                                <p>Yes</p>
+                                <p>Yes</p>
+                                <p>SSD (RAID)</p>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     </>
                     )}
