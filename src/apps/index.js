@@ -8,6 +8,7 @@ import { NoteBook } from "./NoteBook/NoteBook"
 import { Map } from "./Iframe_Apps/Map"
 import { Browser } from "./Browser/Browser"
 import {TaskManager} from "./Taskmanager/TaskManager"
+import { Camera } from "./Camera/Camera"
 
  
 export const apps = [
@@ -87,6 +88,17 @@ export const apps = [
     }),
     component: React.createElement(VSCode),
     defaultSize: { width: 600, height: 400 },
+  },
+  {
+    id: "camera",
+    title: "Camera",
+    icon: React.createElement("img", {
+      src: "/Logo/camera.png",
+      alt: "VS code",
+      width: 34,
+    }),
+    component: React.createElement(Camera),
+    defaultSize: { width: 450, height: 300 },
   },
   {
     id: "Google",
