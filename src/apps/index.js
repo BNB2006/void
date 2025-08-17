@@ -7,6 +7,8 @@ import { VSCode } from "./Iframe_Apps/VSCode"
 import { NoteBook } from "./NoteBook/NoteBook"
 import { Map } from "./Iframe_Apps/Map"
 import { Browser } from "./Browser/Browser"
+import {TaskManager} from "./Taskmanager/TaskManager"
+import { Camera } from "./Camera/Camera"
 
  
 export const apps = [
@@ -55,6 +57,17 @@ export const apps = [
     defaultSize: { width: 400, height: 300 },
   },
   {
+    id: "taskManager",
+    title: "Task Manager",
+    icon: React.createElement("img", {
+      src: "/Logo/task.png",
+      alt: "Terminal logo",
+      width: 34,
+    }),
+    component: React.createElement(TaskManager),
+    defaultSize: { width: 700, height: 500 },
+  },
+  {
     id: "calculator",
     title: "Calculus",
     icon: React.createElement("img", {
@@ -75,6 +88,17 @@ export const apps = [
     }),
     component: React.createElement(VSCode),
     defaultSize: { width: 600, height: 400 },
+  },
+  {
+    id: "camera",
+    title: "Camera",
+    icon: React.createElement("img", {
+      src: "/Logo/camera.png",
+      alt: "VS code",
+      width: 34,
+    }),
+    component: React.createElement(Camera),
+    defaultSize: { width: 450, height: 300 },
   },
   {
     id: "Google",
