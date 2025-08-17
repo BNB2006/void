@@ -32,7 +32,7 @@ export function Terminal() {
           "Type 'help' to see available commands.",
           "",
         ]);
-        setBooting(false); // Now allow input
+        setBooting(false);
       }
     }, 400);
     return () => clearInterval(interval);
