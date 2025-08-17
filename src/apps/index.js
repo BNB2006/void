@@ -9,6 +9,7 @@ import { Map } from "./Iframe_Apps/Map"
 import { Browser } from "./Browser/Browser"
 import {TaskManager} from "./Taskmanager/TaskManager"
 import { Camera } from "./Camera/Camera"
+import { Youtube } from "./Youtube/Youtube"
 
  
 export const apps = [
@@ -17,7 +18,7 @@ export const apps = [
     title: "Tor",
     icon: React.createElement("img", {
       src: "/Logo/tor.png",
-      alt: "Calculos",
+      alt: "tor browser",
       width: 34,
     }),
     component: React.createElement(Browser),
@@ -39,7 +40,7 @@ export const apps = [
     title: "NoteBook",
     icon: React.createElement("img", {
       src: "/Logo/book.png",
-      alt: "Calculos",
+      alt: "notebook",
       width: 34,
     }),
     component: React.createElement(NoteBook),
@@ -61,14 +62,14 @@ export const apps = [
     title: "Task Manager",
     icon: React.createElement("img", {
       src: "/Logo/task.png",
-      alt: "Terminal logo",
+      alt: "taskmanager",
       width: 34,
     }),
     component: React.createElement(TaskManager),
     defaultSize: { width: 700, height: 500 },
   },
   {
-    id: "calculator",
+    id: "calculus",
     title: "Calculus",
     icon: React.createElement("img", {
       src: "/Logo/calculator.png",
@@ -94,7 +95,7 @@ export const apps = [
     title: "Camera",
     icon: React.createElement("img", {
       src: "/Logo/camera.png",
-      alt: "VS code",
+      alt: "Camera",
       width: 34,
     }),
     component: React.createElement(Camera),
@@ -116,10 +117,21 @@ export const apps = [
     title: "Map",
     icon: React.createElement("img", {
       src: "/Logo/location.png",
-      alt: "Calculos",
+      alt: "map",
       width: 34,
     }),
     component: React.createElement(Map),
+    defaultSize: { width: 500, height: 400 },
+  },
+  {
+    id: "youtube",
+    title: "YouTube",
+    icon: React.createElement("img", {
+      src: "https://cdn-icons-png.flaticon.com/128/5968/5968852.png",
+      alt: "Youtube",
+      width: 34,
+    }),
+    component: React.createElement(Youtube),
     defaultSize: { width: 500, height: 400 },
   },
   
