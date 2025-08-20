@@ -7,7 +7,7 @@ export function Youtube(){
     return(
         <div className="bg-[#0f0f0f] w-full h-full text-white overflow-y-hidden">
 
-            <div className="p-1 flex items-center justify-between">
+            <div className="p-2 flex items-center justify-between">
                 <div className=" flex items-center">
                     <button className="mr-2"><Menu/></button>
                     <img src="https://cdn-icons-png.flaticon.com/128/5968/5968852.png" alt="youtube logo" className="w-5"/>
@@ -30,7 +30,7 @@ export function Youtube(){
             </div>
 
             <div className="flex w-full h-full">
-                <div className="w-[15%] min-w-40 h-full border-r p-2">
+                <div className="w-[13%] min-w-40 h-full p-2">
                     <div className={`flex items-center gap-5 cursor-pointer ${section === "Home" ? 'bg-[#222222] rounded-lg': ''}`} onClick={()=> setSection("Home")}>
                         <Home size={20} className="ml-2"/>
                         <span className="p-2 text-sm">Home</span>
@@ -45,8 +45,176 @@ export function Youtube(){
                     </div>
                 </div>
 
-                <div className="bg-green-400 flex-1 p-2">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div className="h-full flex-1 gap-4 p-2 flex flex-wrap overflow-y-auto">
+                    {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-102">
+                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
+                        <div className="flex gap-2 pt-1">
+                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                            <div>
+                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
+                                <p className="text-gray-400 text-xs">Diguslsekai</p>
+                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="h-10 bg-red">-----</div>
+                    
                 </div>
             </div>
         </div>
