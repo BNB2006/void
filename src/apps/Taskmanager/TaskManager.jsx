@@ -92,7 +92,7 @@ export function TaskManager(){
 
 
     return(
-        <div className="bg-[#191919] text-white">
+        <div className="bg-[#191919] h-full text-white">
           <div className="overflow-y-hidden">
             <div className="border-b border-gray-600 p-2">Performance</div>
             <div className="flex">

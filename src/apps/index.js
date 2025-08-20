@@ -132,7 +132,7 @@ export const apps = [
       width: 34,
     }),
     component: React.createElement(Youtube),
-    defaultSize: { width: 500, height: 400 },
+    defaultSize: { width: 700, height: 500 },
   },
   
   
