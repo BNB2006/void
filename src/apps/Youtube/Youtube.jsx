@@ -1,13 +1,34 @@
-import { Bell, History, Home, Menu, Mic, Plus, Search, ThumbsUp } from "lucide-react";
+import { Bell, CircleCheckBig, History, Home, Menu, Mic, Plus, Search, ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
 export function Youtube(){
     const [section, setSection] = useState("Home");
     const [isPlaying, setIsPlaying] = useState(false)
-    const [play, setPlay] = useState({src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", title:"Bal hanuman"})
+    const [play, setPlay] = useState({
+        title:"Bal Hanuman Official Trailer Digus Isekai", 
+        src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
+        channelName:"Diguslsekai", profilePicture:"/assets/image/song2.jpeg",
+        views:"301K", postDate:"1 day", subscribers:"24.7M",
+    })
 
-    const playVideo = () => {
-        setPlay({src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL"})
+    const [videos, setVideos] = useState([
+        {id:1, title:"Bal Hanuman Official Trailer Digus Isekai", src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
+            thumbnail:"/assets/youtube/thumbnail1.png", views:"389K", postDate:"3 days", channelName:"Diguslsekai", profilePicture:"/assets/image/song1.jpg", subscribers:"24.7M"},
+        {id:2, title:"Scott Lang Training Montage | Ant-Man | Official Clip", src:"https://www.youtube.com/embed/jRWvpJNovZ0?si=Kwt3WU8ZAMeqSihD", 
+            thumbnail:"/assets/youtube/thumbnail2.png", views:"301K", postDate:"1 day", channelName:"Marvel Entertainment", profilePicture:"/assets/image/song2.jpeg", subscribers:"21.7M"},
+        // {id:3, title:"", src:"", 
+        //     thumbnail:"", views:"", postDate:"", channelName:"", profilePicture:"", subscribers:""},
+    ])
+
+    const playVideo = (videoDetails) => {
+        setPlay({title:  videoDetails.title, 
+            src:  videoDetails.src, 
+            channelName:  videoDetails.channelName, 
+            profilePicture:  videoDetails.profilePicture,
+            views:  videoDetails.views,
+            postDate:  videoDetails.postDate,
+            subscribers: videoDetails.subscribers,
+        },)
         setIsPlaying(true)
     }
 
@@ -76,17 +97,17 @@ export function Youtube(){
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                         <div className="mt-2 w-[100%]">
-                            <p className="text-2xl">Lorem ipsum dolor sit amet consecte</p>
+                            <p className="text-2xl">{play.title}</p>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-5 mt-2">
                                     <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
                                     <div>
-                                        <p className="text-md">Lorem, ipsum.</p>
-                                        <p className="text-gray-400 text-xs">24.7M Subscribers</p>
+                                        <p className="text-md flex items-center gap-2">{play.channelName} <CircleCheckBig className="text-blue-500 w-4"/></p>
+                                        <p className="text-gray-400 text-xs">{play.subscribers} Subscribers</p>
                                     </div>
                                 </div>
                                 <div className="px-2">
-                                    <p className="">389K views .  3 days ago</p>
+                                    <p className="bg-[#222222] p-2 rounded">{play.views} views |  {play.postDate} ago</p>
                                 </div>
                             </div>
                         </div>
@@ -100,18 +121,20 @@ export function Youtube(){
                 ):(
                     <>
                     <div className="h-full flex-1 gap-4 p-2 flex flex-wrap overflow-y-auto">
-                    <div className="w-102 cursor-pointer" onClick={() => playVideo()}>
-                        <img src="/assets/youtube/image.png" className="w-[100%] rounded" alt="" />
-                        <div className="flex gap-2 pt-1">
-                            <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
-                            <div>
-                                <p className="text-sm">Bal Hanuman Official Trailer Digus Isekai</p>
-                                <p className="text-gray-400 text-xs">Diguslsekai</p>
-                                <p className="text-gray-400 text-xs">389K views .  3 days ago</p>
+                        {videos.map((deatils) => (
+                        <div className="w-102 cursor-pointer" onClick={() => playVideo(deatils)}>
+                            <img src={deatils.thumbnail} className="w-[100%] rounded" alt="" />
+                            <div className="flex gap-2 pt-1">
+                                <img src={deatils.profilePicture} className="w-8 h-8 rounded-full" alt="" />
+                                <div>
+                                    <p className="text-sm">{deatils.title}</p>
+                                    <p className="text-gray-400 text-xs">{deatils.channelName}</p>
+                                    <p className="text-gray-400 text-xs">{deatils.views} views .  {deatils.postDate} ago</p>
+                                </div>
                             </div>
                         </div>
+                        ))}
                     </div>
-                </div>
                     </>
                 )}
 
