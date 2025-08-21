@@ -1,4 +1,4 @@
-import { Bell, CircleCheckBig, History, Home, Menu, Mic, Plus, Search, ThumbsUp } from "lucide-react";
+import { Bell, CircleCheckBig, History, Home, Menu, Mic, Play, Plus, Search, ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
 export function Youtube(){
@@ -13,11 +13,55 @@ export function Youtube(){
 
     const [videos, setVideos] = useState([
         {id:1, title:"Bal Hanuman Official Trailer Digus Isekai", src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
-            thumbnail:"/assets/youtube/thumbnail1.png", views:"389K", postDate:"3 days", channelName:"Diguslsekai", profilePicture:"/assets/image/song1.jpg", subscribers:"24.7M"},
-        {id:2, title:"Scott Lang Training Montage | Ant-Man | Official Clip", src:"https://www.youtube.com/embed/jRWvpJNovZ0?si=Kwt3WU8ZAMeqSihD", 
-            thumbnail:"/assets/youtube/thumbnail2.png", views:"301K", postDate:"1 day", channelName:"Marvel Entertainment", profilePicture:"/assets/image/song2.jpeg", subscribers:"21.7M"},
-        // {id:3, title:"", src:"", 
-        //     thumbnail:"", views:"", postDate:"", channelName:"", profilePicture:"", subscribers:""},
+            thumbnail:"/assets/youtube/thumbnail1.png", views:"389K", postDate:"3 days", channelName:"Diguslsekai", 
+            profilePicture:"https://yt3.googleusercontent.com/fy3YHjK3ligSA0Dv7ukFO8I9DRrAh3mJjMBSLpf6_fi5G8jmCWmtveAq2Ge3_xuSFvvpJJoHoxI=s160-c-k-c0x00ffffff-no-rj", subscribers:"24.7M"},
+        {
+            id:2, title:"Scott Lang Training Montage | Ant-Man | Official Clip", src:"https://www.youtube.com/embed/jRWvpJNovZ0?si=Kwt3WU8ZAMeqSihD", 
+            thumbnail:"/assets/youtube/thumbnail2.png", views:"301K", postDate:"1 day", channelName:"Marvel Entertainment", 
+            profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
+        },
+        {
+            id:3, title:"Happiness", src:"https://www.youtube.com/embed/e9dZQelULDk?si=5_xYYMfcL7f6rlfF", 
+            thumbnail:"/assets/youtube/thumbnail3.png", views:"55M", postDate:"7 year", channelName:"Steve Cutts", 
+            profilePicture:"https://yt3.googleusercontent.com/ytc/AIdro_miKmb89rERFj1lwkCnn7IY7bazxfNuAApGexoZFNI-v-0=s160-c-k-c0x00ffffff-no-rj", 
+            subscribers:"1.97M"
+        },
+
+        {
+            id:4, title:"Dormammu Time Loop | Doctor Strange | Official Clip", src:"https://www.youtube.com/embed/DCrFkaZL254?si=RC7YN9XA2Lvf28_B", 
+            thumbnail:"/assets/youtube/thumbnail4.png", views:"3.4M", postDate:"3 months", channelName:"Marvel Entertainment", 
+            profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
+        },
+        {
+            id:5, title:"Claude Code is Amazing!", src:"https://www.youtube.com/embed/i3tRkbsE54Q?si=dCklvzbO-rAwIMVH", 
+            thumbnail:"/assets/youtube/thumbnail5.png", views:"166K", postDate:"3 weeks", channelName:"CodeWithHarry", 
+            profilePicture:"https://yt3.googleusercontent.com/ytc/AIdro_kX3sdbuu3KFmRPsmlu0R5Rx_BhpxwupjtvJmkEdNfla7w=s160-c-k-c0x00ffffff-no-rj", subscribers:"8.75M"
+        },
+        {
+            id:6, title:"Loki Bhaiya | Udit Edits", src:"https://www.youtube.com/embed/mM7gfVYwFuI?si=ERAu_axKBqmKpz4R", 
+            thumbnail:"/assets/youtube/thumbnail6.png", views:"315K", postDate:"1 year", channelName:"Udit Edits", 
+            profilePicture:"https://yt3.googleusercontent.com/DNGLrro0sbqheMKEgNE3UF7b8IgBO_HysH4YcVMOYIcymZHBb8keTZ-4aa3x7C5z8-n-zJ92=s160-c-k-c0x00ffffff-no-rj", subscribers:"123K"
+        },
+        {
+            id:7, title:"Lord of the Mysteries | Official Trailer 2 | [ENG SUB]", src:"https://www.youtube.com/embed/02jcxBEIWpg?si=OZFTu5kDPtwBwaRC", 
+            thumbnail:"/assets/youtube/thumbnail7.png", views:"807K", postDate:"1 year", channelName:"MemozaFusion", 
+            profilePicture:"https://yt3.googleusercontent.com/MxxxHmYiH2BHmB1cdoDubP4h1gTikFMVTXRzgBxU6LfvBGX5agT2ajECMTZVCrSRCXTsQdBVFg=s160-c-k-c0x00ffffff-no-rj", subscribers:"73.8K"
+        },
+        {
+            id:8, title:"Infinity Ultron VS The Watcher | What If...? | Official Clip", src:"https://www.youtube.com/embed/0tMMzqWIbcw?si=m5bDsqt5n54aofw9", 
+            thumbnail:"/assets/youtube/thumbnail8.png", views:"259K", postDate:"2 weeks", channelName:"Marvel Entertainment", 
+            profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
+        },
+        {
+            id:9, title:"Afusic - Pal Pal (Official Music Video) Prod.", src:"https://www.youtube.com/embed/8of5w7RgcTc?si=ySS_Xs5d5GJ7-XuV", 
+            thumbnail:"/assets/youtube/thumbnail9.png", views:"259K", postDate:"6 months", channelName:"AFUSIC", 
+            profilePicture:"https://yt3.googleusercontent.com/BHwT3bbu6tRGHKppQcBf5DY7arDKCijJesyKFSZGQegRPmQaMsg5j25NzIQGRPISvO6Cq2rL=s160-c-k-c0x00ffffff-no-rj", subscribers:"756K"
+        },
+        {
+            id:9, title:"", src:"", 
+            thumbnail:"", views:"", postDate:"", channelName:"", 
+            profilePicture:"", subscribers:""
+        },
     ])
 
     const playVideo = (videoDetails) => {
@@ -100,7 +144,7 @@ export function Youtube(){
                             <p className="text-2xl">{play.title}</p>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-5 mt-2">
-                                    <img src="/assets/image/song2.jpeg" className="w-8 h-8 rounded-full" alt="" />
+                                    <img src={play.profilePicture} className="w-8 h-8 rounded-full" alt="" />
                                     <div>
                                         <p className="text-md flex items-center gap-2">{play.channelName} <CircleCheckBig className="text-blue-500 w-4"/></p>
                                         <p className="text-gray-400 text-xs">{play.subscribers} Subscribers</p>
