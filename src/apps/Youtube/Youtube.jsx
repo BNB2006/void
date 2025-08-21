@@ -1,4 +1,4 @@
-import { Bell, CircleCheckBig, History, Home, Menu, Mic, Play, Plus, Search, ThumbsUp } from "lucide-react";
+import { Bell, CircleCheckBig, History, Home, Menu, Mic, Plus, Search, ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
 export function Youtube(){
@@ -57,11 +57,11 @@ export function Youtube(){
             thumbnail:"/assets/youtube/thumbnail9.png", views:"259K", postDate:"6 months", channelName:"AFUSIC", 
             profilePicture:"https://yt3.googleusercontent.com/BHwT3bbu6tRGHKppQcBf5DY7arDKCijJesyKFSZGQegRPmQaMsg5j25NzIQGRPISvO6Cq2rL=s160-c-k-c0x00ffffff-no-rj", subscribers:"756K"
         },
-        {
-            id:9, title:"", src:"", 
-            thumbnail:"", views:"", postDate:"", channelName:"", 
-            profilePicture:"", subscribers:""
-        },
+        // {
+        //     id:10, title:"", src:"", 
+        //     thumbnail:"", views:"", postDate:"", channelName:"", 
+        //     profilePicture:"", subscribers:""
+        // },
     ])
 
     const playVideo = (videoDetails) => {
@@ -81,7 +81,7 @@ export function Youtube(){
 
             <div className="p-2 flex items-center justify-between">
                 <div className=" flex items-center">
-                    <button className="mr-2"><Menu/></button>
+                    <button className="mr-2 cursor-not-allowed"><Menu/></button>
                     <img src="https://cdn-icons-png.flaticon.com/128/5968/5968852.png" alt="youtube logo" className="w-5"/>
                     <span className="text-white text-xl">YouTube</span>
                 </div>
@@ -89,13 +89,13 @@ export function Youtube(){
                 <div className="flex items-center gap-5">
                     <div className="flex items-center rounded-full border border-gray-400">
                         <input type="text" className="p-2 w-90 outline-none" placeholder="Search..."/>
-                        <button type="submit" className="py-2 px-3 bg-[#222222] rounded-r-full"><Search/></button>
+                        <button type="submit" className="py-2 px-3 bg-[#222222] rounded-r-full cursor-not-allowed"><Search/></button>
                     </div>
-                    <div className="bg-[#222222] w-10 h-10 flex items-center justify-center rounded-full"><Mic className=""/></div>
+                    <div className="bg-[#222222] w-10 h-10 flex items-center justify-center rounded-full cursor-not-allowed"><Mic className=""/></div>
                 </div>
 
                 <div className="flex items-center gap-5">
-                    <div className="flex items-center gap-1 bg-[#222222]  p-2 rounded-full text-sm "><Plus/><span>Create</span></div>
+                    <div className="flex items-center gap-1 bg-[#222222]  p-2 rounded-full text-sm  cursor-not-allowed"><Plus/><span>Create</span></div>
                     <Bell size={22}/>
                     <div className="rounded-full border w-8 h-8 bg-blue-400"></div>
                 </div>
@@ -134,7 +134,7 @@ export function Youtube(){
 
                 {isPlaying ? (
                     <>
-                    <div className="flex-1 flex">
+                    <div className="flex-1  flex ">
                         <div className="w-[900px] h-full">
                         <iframe className="w-[100%] h-[500px] rounded-md" frameborder="0"
                         src={play.src} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -157,14 +157,23 @@ export function Youtube(){
                         </div>
                         </div>
 
-                        <div className=" flex-1 bg-[#222222]  px-2 text-3xl">
-                            other videos
+                        <div className="flex-1 px-2 text-3xl w-[402px] mb-15 bg-[#161616] overflow-y-auto">
+                          {videos.map((video)=>(
+                            <div className="w-[394px] h-[95px] flex gap-2 my-2 cursor-pointer" onClick={() => playVideo(video)}>
+                                <img src={video.thumbnail} alt="" className="w-[168px] rounded-sm"/>
+                                <div className="flex flex-col">
+                                    <span className="text-[1rem] overflow-hidden">{video.title}</span>
+                                    <span className="text-sm text-gray-400">{video.channelName}</span>
+                                    <span className="text-sm text-gray-400">{video.views} views • {video.postDate} ago</span>
+                                </div>
+                            </div>
+                          ))}
                         </div>
                     </div>
                     </>
                 ):(
                     <>
-                    <div className="h-full flex-1 gap-4 p-2 flex flex-wrap overflow-y-auto">
+                        <div className="flex-1 gap-5 mb-17 flex flex-wrap overflow-y-auto">
                         {videos.map((deatils) => (
                         <div className="w-102 cursor-pointer" onClick={() => playVideo(deatils)}>
                             <img src={deatils.thumbnail} className="w-[100%] rounded" alt="" />
