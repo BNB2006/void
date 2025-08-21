@@ -132,7 +132,9 @@ export function Youtube(){
                     </div>
                 </div>
 
-                {isPlaying ? (
+                {section === "Home" && (
+                    <>
+                    {isPlaying ? (
                     <>
                     <div className="flex-1  flex ">
                         <div className="w-[900px] h-full">
@@ -177,7 +179,7 @@ export function Youtube(){
                         {videos.map((deatils) => (
                         <div className="w-102 cursor-pointer" onClick={() => playVideo(deatils)}>
                             <img src={deatils.thumbnail} className="w-[100%] rounded" alt="" />
-                            <div className="flex gap-2 pt-1">
+                            <div className="flex items-center gap-2 pt-1">
                                 <img src={deatils.profilePicture} className="w-8 h-8 rounded-full" alt="" />
                                 <div>
                                     <p className="text-sm">{deatils.title}</p>
@@ -187,6 +189,28 @@ export function Youtube(){
                             </div>
                         </div>
                         ))}
+                    </div>
+                    </>
+                )}
+                </>
+                )}
+
+                {section === "Like" && (
+                    <>
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <img className="w-50" src="https://summer.hackclub.com/assets/orpheustimer-3de90461.png" alt="orphus" />
+                        <p className="text-5xl my-5">your Liked 💘 videos</p>
+                        <span>Developer working on it</span>
+
+                    </div>
+                    </>
+                )}
+
+                {section === "History" && (
+                    <>
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <img className="w-50" src="https://summer.hackclub.com/assets/orpheustimer-3de90461.png" alt="orphus" />
+                        <span className="text-5xl">Your ⌚ History</span>
                     </div>
                     </>
                 )}
