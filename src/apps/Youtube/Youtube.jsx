@@ -9,7 +9,9 @@ export function Youtube(){
         src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
         channelName:"Diguslsekai", profilePicture:"/assets/image/song2.jpeg",
         views:"301K", postDate:"1 day", subscribers:"24.7M",
-    })
+    });
+
+    const [history, setHistory] = useState([]);
 
     const [videos, setVideos] = useState([
         {id:1, title:"Bal Hanuman Official Trailer Digus Isekai", src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
@@ -73,7 +75,20 @@ export function Youtube(){
             postDate:  videoDetails.postDate,
             subscribers: videoDetails.subscribers,
         },)
-        setIsPlaying(true)
+        setIsPlaying(true);
+        setSection("")
+
+        setHistory((prev) => [
+            {
+                id: prev+1,
+                title: videoDetails.title,
+                src: videoDetails.src,
+                thumbnail: videoDetails.thumbnail,
+                views: videoDetails.views,
+                channelName: videoDetails.channelName,
+            },
+            ...prev.slice(0,99),
+        ])
     }
 
     return(
@@ -133,30 +148,48 @@ export function Youtube(){
                 </div>
 
                 {section === "Home" && (
-                    <>
-                    {isPlaying ? (
-                    <>
-                    <div className="flex-1  flex ">
-                        <div className="w-[900px] h-full">
-                        <iframe className="w-[100%] h-[500px] rounded-md" frameborder="0"
-                        src={play.src} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                        </iframe>
-                        <div className="mt-2 w-[100%]">
-                            <p className="text-2xl">{play.title}</p>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-5 mt-2">
-                                    <img src={play.profilePicture} className="w-8 h-8 rounded-full" alt="" />
-                                    <div>
-                                        <p className="text-md flex items-center gap-2">{play.channelName} <CircleCheckBig className="text-blue-500 w-4"/></p>
-                                        <p className="text-gray-400 text-xs">{play.subscribers} Subscribers</p>
-                                    </div>
-                                </div>
-                                <div className="px-2">
-                                    <p className="bg-[#222222] p-2 rounded">{play.views} views |  {play.postDate} ago</p>
+                <>
+                    <div className="flex-1 gap-5 mb-17 flex flex-wrap overflow-y-auto">
+                        {videos.map((deatils) => (
+                        <div className="w-102 cursor-pointer" onClick={() => playVideo(deatils)}>
+                            <img src={deatils.thumbnail} className="w-[100%] rounded" alt="" />
+                            <div className="flex items-center gap-2 pt-1">
+                                <img src={deatils.profilePicture} className="w-8 h-8 rounded-full" alt="" />
+                                <div>
+                                    <p className="text-sm">{deatils.title}</p>
+                                    <p className="text-gray-400 text-xs">{deatils.channelName}</p>
+                                    <p className="text-gray-400 text-xs">{deatils.views} views .  {deatils.postDate} ago</p>
                                 </div>
                             </div>
                         </div>
+                        ))}
+                    </div>
+                </>
+                )}
+
+                {isPlaying && (
+                    <>
+                    <div className="flex-1  flex ">
+                        <div className="w-[900px] h-full">
+                            <iframe className="w-[100%] h-[500px] rounded-md" frameborder="0"
+                            src={play.src} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                            <div className="mt-2 w-[100%]">
+                                <p className="text-2xl">{play.title}</p>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-5 mt-2">
+                                        <img src={play.profilePicture} className="w-8 h-8 rounded-full" alt="" />
+                                        <div>
+                                            <p className="text-md flex items-center gap-2">{play.channelName} <CircleCheckBig className="text-blue-500 w-4"/></p>
+                                            <p className="text-gray-400 text-xs">{play.subscribers} Subscribers</p>
+                                        </div>
+                                    </div>
+                                    <div className="px-2">
+                                        <p className="bg-[#222222] p-2 rounded">{play.views} views |  {play.postDate} ago</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="flex-1 px-2 text-3xl w-[402px] mb-15 bg-[#161616] overflow-y-auto">
@@ -173,32 +206,12 @@ export function Youtube(){
                         </div>
                     </div>
                     </>
-                ):(
-                    <>
-                        <div className="flex-1 gap-5 mb-17 flex flex-wrap overflow-y-auto">
-                        {videos.map((deatils) => (
-                        <div className="w-102 cursor-pointer" onClick={() => playVideo(deatils)}>
-                            <img src={deatils.thumbnail} className="w-[100%] rounded" alt="" />
-                            <div className="flex items-center gap-2 pt-1">
-                                <img src={deatils.profilePicture} className="w-8 h-8 rounded-full" alt="" />
-                                <div>
-                                    <p className="text-sm">{deatils.title}</p>
-                                    <p className="text-gray-400 text-xs">{deatils.channelName}</p>
-                                    <p className="text-gray-400 text-xs">{deatils.views} views .  {deatils.postDate} ago</p>
-                                </div>
-                            </div>
-                        </div>
-                        ))}
-                    </div>
-                    </>
-                )}
-                </>
                 )}
 
                 {section === "Like" && (
                     <>
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <img className="w-50" src="https://summer.hackclub.com/assets/orpheustimer-3de90461.png" alt="orphus" />
+                        <img className="w-50" src="/orpheus.png" alt="orphus" />
                         <p className="text-5xl my-5">your Liked 💘 videos</p>
                         <span>Developer working on it</span>
 
@@ -207,12 +220,39 @@ export function Youtube(){
                 )}
 
                 {section === "History" && (
+                <>
+                {history.length > 0 ? (
+                    <div className="flex-1 flex flex-col px-5 mb-15">
+                        <div className="pb-5 ml-[27%] text-5xl">
+                            Watch History
+                        </div>
+
+                        <div className="h-full overflow-y-auto">
+                            {history.map((video) => (
+                                <div className="flex gap-2 p-2 my-2 cursor-pointer max-w-5xl bg-[#45454522] rounded-md" onClick={() => playVideo(video)}>
+                                <img src={video.thumbnail} alt="" className="w-55 rounded-sm"/>
+                                <div className="flex flex-col">
+                                    <span className="text-xl ">{video.title}</span>
+                                    <div className="flex items-center gap-5 mt-1">
+                                        <span className="text-md text-gray-400 flex items-center gap-2">{video.channelName} <CircleCheckBig className=" w-4"/> </span>
+                                        <span className="text-shadow-md text-gray-400">{video.views} views</span>
+                                    </div>
+                                    <span className="text-sm text-gray-400 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet exercitationem debitis placeat ullam accusantium. Accusamus quos ipsum similique atque quibusdam!</span>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+
+                    </div>
+                    ):(
                     <>
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <img className="w-50" src="https://summer.hackclub.com/assets/orpheustimer-3de90461.png" alt="orphus" />
-                        <span className="text-5xl">Your ⌚ History</span>
+                        <img className="w-50" src="/orpheus.png" alt="orphus" />
+                        <span className="text-5xl">No videos</span>
                     </div>
                     </>
+                )}
+                </>
                 )}
 
             </div>
