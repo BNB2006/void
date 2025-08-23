@@ -1,4 +1,4 @@
-import { Bell, CircleCheckBig, History, Home, Menu, Mic, Plus, Search, ThumbsUp } from "lucide-react";
+import { Bell, CircleCheckBig, History, Home, Menu, Mic, Plus, Search, ThumbsDown, ThumbsUp, X } from "lucide-react";
 import { useState } from "react";
 
 export function Youtube(){
@@ -86,9 +86,14 @@ export function Youtube(){
                 thumbnail: videoDetails.thumbnail,
                 views: videoDetails.views,
                 channelName: videoDetails.channelName,
+                time: new Date().toLocaleTimeString([], {hour: "2-digit", minute:"2-digit"})
             },
             ...prev.slice(0,99),
         ])
+    };
+
+    const removeFromHistory = (videoID) => {
+        setHistory((prev) => prev.filter((video) => video.id !== videoID))
     }
 
     return(
@@ -222,22 +227,31 @@ export function Youtube(){
                 {section === "History" && (
                 <>
                 {history.length > 0 ? (
-                    <div className="flex-1 flex flex-col px-5 mb-15">
+                    <div className="flex-1 flex flex-col mb-15">
                         <div className="pb-5 ml-[27%] text-5xl">
                             Watch History
                         </div>
 
                         <div className="h-full overflow-y-auto">
                             {history.map((video) => (
-                                <div className="flex gap-2 p-2 my-2 cursor-pointer max-w-5xl bg-[#45454522] rounded-md" onClick={() => playVideo(video)}>
-                                <img src={video.thumbnail} alt="" className="w-55 rounded-sm"/>
-                                <div className="flex flex-col">
-                                    <span className="text-xl ">{video.title}</span>
-                                    <div className="flex items-center gap-5 mt-1">
-                                        <span className="text-md text-gray-400 flex items-center gap-2">{video.channelName} <CircleCheckBig className=" w-4"/> </span>
-                                        <span className="text-shadow-md text-gray-400">{video.views} views</span>
+                                <div className="flex p-2 my-2 max-h-30 bg-[#45454522] rounded-md">
+                                <div onClick={() => playVideo(video)} className="flex gap-2 cursor-pointer">
+                                    <img src={video.thumbnail} alt="" className=" rounded-sm"/>
+                                    <div className="flex flex-col">
+                                        <span className="text-xl ">{video.title}</span>
+                                        <div className="flex items-center gap-5 ">
+                                            <span className="text-md text-gray-400 flex items-center gap-2">{video.channelName} <CircleCheckBig className=" w-4"/> </span>
+                                            <span className="text-shadow-md text-gray-400">{video.views} views</span>
+                                        </div>
+                                        <span className="text-sm text-gray-400 mr-1 overflow-hidden">Lorem ipsum dolor sit amet consectetur hhdg hjhjjhjhjh adipisicing elit. Amet exercitationem debitis placeat ullam accusantium. Accusamus quos ipsum similique atque quibusdam!</span>
                                     </div>
-                                    <span className="text-sm text-gray-400 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet exercitationem debitis placeat ullam accusantium. Accusamus quos ipsum similique atque quibusdam!</span>
+                                </div>
+                                <div className="flex flex-col justify-between">
+                                    <button className="flex justify-end" onClick={() => removeFromHistory(video.id)}>
+                                        <span className="p-2 hover:bg-[#4f4a4a22] rounded-md">
+                                            <X size={15}/>
+                                        </span></button>
+                                    <p className="text-xs bg-[#4f4a4a22] w-20 py-2 flex items-center justify-center rounded-sm">{video.time}</p>
                                 </div>
                             </div>
                             ))}
