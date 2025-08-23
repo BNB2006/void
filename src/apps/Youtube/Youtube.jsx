@@ -16,6 +16,7 @@ export function Youtube(){
 
     const [history, setHistory] = useState([]);
     const [likes, setLikes] = useState([]);
+    const [toggleNotification, setToggleNotification] = useState(false)
 
     const [videos, setVideos] = useState([
   {
@@ -408,10 +409,29 @@ export function Youtube(){
 
                 <div className="flex items-center gap-5">
                     <div className="flex items-center gap-1 bg-[#222222]  p-2 rounded-full text-sm  cursor-not-allowed"><Plus/><span>Create</span></div>
-                    <Bell size={22}/>
+                    <Bell size={22} onClick={() => setToggleNotification(!toggleNotification)} className={`cursor-pointer ${toggleNotification ? 'fill-current' : ''}`}/>
                     <div className="rounded-full border w-8 h-8 bg-blue-400"></div>
                 </div>
             </div>
+
+            {toggleNotification && (<>
+            <div className="bg-[#282828] absolute right-5 w-[400px] h-[500px] rounded-lg shadow-xl border border-gray-600">
+              <div className="p-4 border-b border-gray-600 flex items-center justify-between">
+                <span className="text-white font-medium">Notifications</span>
+              </div>
+              <div className="flex flex-col items-center justify-center h-full p-8">
+                <div className="w-20 h-20 rounded-full bg-[#3f3f3f] flex items-center justify-center mb-6">
+                  <Bell size={32} className="text-gray-500"/>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-white text-lg font-medium mb-2">Your notifications live here</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                    Subscribe to your favourite channels to receive notifications about their latest videos.
+                  </p>
+                </div>
+              </div>
+            </div>
+            </>)}
 
             <div className="flex w-full h-full">
                 <div className="w-[13%] min-w-40 h-full p-2">
@@ -501,6 +521,7 @@ export function Youtube(){
                                 </div>
                             </div>
                         </div>
+                        
 
                         <div className="flex-1 px-2 text-3xl w-[402px] mb-15  overflow-y-auto">
                           {videos.filter(video => video.id !== play.id).map((video)=>(
