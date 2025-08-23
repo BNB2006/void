@@ -5,82 +5,88 @@ export function Youtube(){
     const [section, setSection] = useState("Home");
     const [isPlaying, setIsPlaying] = useState(false)
     const [play, setPlay] = useState({
+        id:1,
         title:"Bal Hanuman Official Trailer Digus Isekai", 
         src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
         channelName:"Diguslsekai", profilePicture:"/assets/image/song2.jpeg",
         views:"301K", postDate:"1 day", subscribers:"24.7M",
+        isLiked: false,
+        isDisliked: false
     });
 
     const [history, setHistory] = useState([]);
+    const [likes, setLikes] = useState([]);
 
     const [videos, setVideos] = useState([
         {id:1, title:"Bal Hanuman Official Trailer Digus Isekai", src:"https://www.youtube.com/embed/_NJvncbpcCA?si=gYlq9oPETJE0ZAcL", 
-            thumbnail:"/assets/youtube/thumbnail1.png", views:"389K", postDate:"3 days", channelName:"Diguslsekai", 
+            thumbnail:"https://img.youtube.com/vi/_NJvncbpcCA/maxresdefault.jpg", views:"389K", postDate:"3 days", channelName:"Diguslsekai", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/fy3YHjK3ligSA0Dv7ukFO8I9DRrAh3mJjMBSLpf6_fi5G8jmCWmtveAq2Ge3_xuSFvvpJJoHoxI=s160-c-k-c0x00ffffff-no-rj", subscribers:"24.7M"},
         {
             id:2, title:"Scott Lang Training Montage | Ant-Man | Official Clip", src:"https://www.youtube.com/embed/jRWvpJNovZ0?si=Kwt3WU8ZAMeqSihD", 
-            thumbnail:"/assets/youtube/thumbnail2.png", views:"301K", postDate:"1 day", channelName:"Marvel Entertainment", 
+            thumbnail:"https://img.youtube.com/vi/jRWvpJNovZ0/maxresdefault.jpg", views:"301K", postDate:"1 day", channelName:"Marvel Entertainment", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
         },
         {
             id:3, title:"Happiness", src:"https://www.youtube.com/embed/e9dZQelULDk?si=5_xYYMfcL7f6rlfF", 
-            thumbnail:"/assets/youtube/thumbnail3.png", views:"55M", postDate:"7 year", channelName:"Steve Cutts", 
+            thumbnail:"https://img.youtube.com/vi/e9dZQelULDk/maxresdefault.jpg", views:"55M", postDate:"7 year", channelName:"Steve Cutts", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/ytc/AIdro_miKmb89rERFj1lwkCnn7IY7bazxfNuAApGexoZFNI-v-0=s160-c-k-c0x00ffffff-no-rj", 
             subscribers:"1.97M"
         },
-
         {
             id:4, title:"Dormammu Time Loop | Doctor Strange | Official Clip", src:"https://www.youtube.com/embed/DCrFkaZL254?si=RC7YN9XA2Lvf28_B", 
-            thumbnail:"/assets/youtube/thumbnail4.png", views:"3.4M", postDate:"3 months", channelName:"Marvel Entertainment", 
+            thumbnail:"https://img.youtube.com/vi/DCrFkaZL254/maxresdefault.jpg", views:"3.4M", postDate:"3 months", channelName:"Marvel Entertainment", isLiked:false, isDisliked:false, 
             profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
         },
         {
             id:5, title:"Claude Code is Amazing!", src:"https://www.youtube.com/embed/i3tRkbsE54Q?si=dCklvzbO-rAwIMVH", 
-            thumbnail:"/assets/youtube/thumbnail5.png", views:"166K", postDate:"3 weeks", channelName:"CodeWithHarry", 
+            thumbnail:"https://img.youtube.com/vi/i3tRkbsE54Q/maxresdefault.jpg", views:"166K", postDate:"3 weeks", channelName:"CodeWithHarry", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/ytc/AIdro_kX3sdbuu3KFmRPsmlu0R5Rx_BhpxwupjtvJmkEdNfla7w=s160-c-k-c0x00ffffff-no-rj", subscribers:"8.75M"
         },
         {
             id:6, title:"Loki Bhaiya | Udit Edits", src:"https://www.youtube.com/embed/mM7gfVYwFuI?si=ERAu_axKBqmKpz4R", 
-            thumbnail:"/assets/youtube/thumbnail6.png", views:"315K", postDate:"1 year", channelName:"Udit Edits", 
+            thumbnail:"https://img.youtube.com/vi/mM7gfVYwFuI/maxresdefault.jpg", views:"315K", postDate:"1 year", channelName:"Udit Edits", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/DNGLrro0sbqheMKEgNE3UF7b8IgBO_HysH4YcVMOYIcymZHBb8keTZ-4aa3x7C5z8-n-zJ92=s160-c-k-c0x00ffffff-no-rj", subscribers:"123K"
         },
         {
-            id:7, title:"Lord of the Mysteries | Official Trailer 2 | [ENG SUB]", src:"https://www.youtube.com/embed/02jcxBEIWpg?si=OZFTu5kDPtwBwaRC", 
-            thumbnail:"/assets/youtube/thumbnail7.png", views:"807K", postDate:"1 year", channelName:"MemozaFusion", 
+            id:7, title:"Lord of the Mysteries | Official Trailer 2 | [ENG SUB]", src:"https://www.youtube.com/embed/02jcxBEIWpg?si=OZFTu5kDPtwBwaRC",  isDisliked:false,
+            thumbnail:"https://img.youtube.com/vi/02jcxBEIWpg/maxresdefault.jpg", views:"807K", postDate:"1 year", channelName:"MemozaFusion", isLiked:false,
             profilePicture:"https://yt3.googleusercontent.com/MxxxHmYiH2BHmB1cdoDubP4h1gTikFMVTXRzgBxU6LfvBGX5agT2ajECMTZVCrSRCXTsQdBVFg=s160-c-k-c0x00ffffff-no-rj", subscribers:"73.8K"
         },
         {
             id:8, title:"Infinity Ultron VS The Watcher | What If...? | Official Clip", src:"https://www.youtube.com/embed/0tMMzqWIbcw?si=m5bDsqt5n54aofw9", 
-            thumbnail:"/assets/youtube/thumbnail8.png", views:"259K", postDate:"2 weeks", channelName:"Marvel Entertainment", 
+            thumbnail:"https://img.youtube.com/vi/0tMMzqWIbcw/maxresdefault.jpg", views:"259K", postDate:"2 weeks", channelName:"Marvel Entertainment", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ=s160-c-k-c0x00ffffff-no-rj", subscribers:"21.7M"
         },
         {
             id:9, title:"Afusic - Pal Pal (Official Music Video) Prod.", src:"https://www.youtube.com/embed/8of5w7RgcTc?si=ySS_Xs5d5GJ7-XuV", 
-            thumbnail:"/assets/youtube/thumbnail9.png", views:"259K", postDate:"6 months", channelName:"AFUSIC", 
+            thumbnail:"https://img.youtube.com/vi/8of5w7RgcTc/maxresdefault.jpg", views:"259K", postDate:"6 months", channelName:"AFUSIC", isLiked:false, isDisliked:false,
             profilePicture:"https://yt3.googleusercontent.com/BHwT3bbu6tRGHKppQcBf5DY7arDKCijJesyKFSZGQegRPmQaMsg5j25NzIQGRPISvO6Cq2rL=s160-c-k-c0x00ffffff-no-rj", subscribers:"756K"
-        },
-        // {
-        //     id:10, title:"", src:"", 
-        //     thumbnail:"", views:"", postDate:"", channelName:"", 
-        //     profilePicture:"", subscribers:""
-        // },
+        }
     ])
 
     const playVideo = (videoDetails) => {
-        setPlay({title:  videoDetails.title, 
-            src:  videoDetails.src, 
-            channelName:  videoDetails.channelName, 
-            profilePicture:  videoDetails.profilePicture,
-            views:  videoDetails.views,
-            postDate:  videoDetails.postDate,
+        const videoInVideos = videos.find(v => v.id === videoDetails.id);
+        const isVideoLiked = videoInVideos ? videoInVideos.isLiked : false;
+        const isVideoDisliked = videoInVideos ? videoInVideos.isDisliked : false;
+
+        setPlay({
+            id: videoDetails.id,
+            title: videoDetails.title, 
+            src: videoDetails.src, 
+            channelName: videoDetails.channelName, 
+            profilePicture: videoDetails.profilePicture,
+            views: videoDetails.views,
+            isLiked: isVideoLiked,
+            isDisliked: isVideoDisliked,
+            postDate: videoDetails.postDate,
             subscribers: videoDetails.subscribers,
-        },)
+        });
         setIsPlaying(true);
         setSection("")
 
         setHistory((prev) => [
             {
-                id: prev+1,
+                id: Date.now(), 
                 title: videoDetails.title,
                 src: videoDetails.src,
                 thumbnail: videoDetails.thumbnail,
@@ -95,6 +101,76 @@ export function Youtube(){
     const removeFromHistory = (videoID) => {
         setHistory((prev) => prev.filter((video) => video.id !== videoID))
     }
+
+    const removeFromLikes = (videoID) => {
+        setLikes((prev) => prev.filter((video) => video.id !== videoID));
+        
+        setVideos((prev) => prev.map((video) => 
+            video.id === videoID ? { ...video, isLiked: false } : video
+        ));
+
+        if (play.id === videoID) {
+            setPlay(prev => ({ ...prev, isLiked: false }));
+        }
+    }
+
+    const likeVideo = () => {
+        const currentVideoId = play.id;
+    const isCurrentlyLiked = play.isLiked;
+    
+    setPlay(prev => ({ 
+        ...prev, 
+        isLiked: !isCurrentlyLiked,
+        isDisliked: !isCurrentlyLiked ? false : prev.isDisliked
+    }));
+    
+    setVideos(prev => prev.map(video => 
+        video.id === currentVideoId ? { 
+            ...video, 
+            isLiked: !isCurrentlyLiked,
+            isDisliked: !isCurrentlyLiked ? false : video.isDisliked
+        } : video
+    ));
+
+        if (!isCurrentlyLiked) {
+            const videoToAdd = videos.find(v => v.id === currentVideoId);
+            if (videoToAdd) {
+                setLikes(prev => [
+                    {
+                        ...videoToAdd,
+                        isLiked: true,
+                        likedAt: new Date().toLocaleString()
+                    },
+                    ...prev
+                ]);
+            }
+        } else {
+            setLikes(prev => prev.filter(video => video.id !== currentVideoId));
+        }
+    }
+
+    const dislikeVideo = () => {
+    const currentVideoId = play.id;
+    const isCurrentlyDisliked = play.isDisliked;
+    
+    setPlay(prev => ({ 
+        ...prev, 
+        isDisliked: !isCurrentlyDisliked,
+        isLiked: !isCurrentlyDisliked ? false : prev.isLiked 
+    }));
+    
+    setVideos(prev => prev.map(video => 
+        video.id === currentVideoId ? { 
+            ...video, 
+            isDisliked: !isCurrentlyDisliked,
+            isLiked: !isCurrentlyDisliked ? false : video.isLiked
+        } : video
+    ));
+
+    if (!isCurrentlyDisliked && play.isLiked) {
+        setLikes(prev => prev.filter(video => video.id !== currentVideoId));
+    }
+}
 
     return(
         <div className="bg-[#0f0f0f] w-full h-full text-white overflow-y-hidden overflow-x-hidden">
@@ -190,16 +266,29 @@ export function Youtube(){
                                             <p className="text-gray-400 text-xs">{play.subscribers} Subscribers</p>
                                         </div>
                                     </div>
-                                    <div className="px-2">
-                                        <p className="bg-[#222222] p-2 rounded">{play.views} views |  {play.postDate} ago</p>
+                                    <div className="bg-[#272727] rounded-full flex items-center overflow-hidden">
+                                        <button className={`px-4 py-2 flex items-center gap-2 hover:bg-[#3f3f3f] transition-colors ${
+                                                play.isLiked ? 'text-gray-300' : 'text-white'
+                                            }`}
+                                            onClick={likeVideo}
+                                        >
+                                            <ThumbsUp size={18} className={play.isLiked ? 'fill-current' : ''} />
+                                            <span className="text-sm">69K</span>
+                                        </button>
+                                        <div className="w-px h-6 bg-gray-600"></div>
+                                        <button className="px-4 py-2 flex items-center gap-2 hover:bg-[#3f3f3f] transition-colors"
+                                            onClick={dislikeVideo}
+                                        >
+                                            <ThumbsDown size={18} className={play.isDisliked ? 'fill-current' : 'not-only-of-type:'}/>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex-1 px-2 text-3xl w-[402px] mb-15 bg-[#161616] overflow-y-auto">
-                          {videos.map((video)=>(
-                            <div className="w-[394px] h-[95px] flex gap-2 my-2 cursor-pointer" onClick={() => playVideo(video)}>
+                        <div className="flex-1 px-2 text-3xl w-[402px] mb-15  overflow-y-auto">
+                          {videos.filter(video => video.id !== play.id).map((video)=>(
+                            <div className="w-[394px] h-[95px] flex gap-2 my-2 cursor-pointer hover:bg-[#161616]" onClick={() => playVideo(video)}>
                                 <img src={video.thumbnail} alt="" className="w-[168px] rounded-sm"/>
                                 <div className="flex flex-col">
                                     <span className="text-[1rem] overflow-hidden">{video.title}</span>
@@ -215,12 +304,58 @@ export function Youtube(){
 
                 {section === "Like" && (
                     <>
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                        <img className="w-50" src="/orpheus.png" alt="orphus" />
-                        <p className="text-5xl my-5">your Liked 💘 videos</p>
-                        <span>Developer working on it</span>
+                    {likes.length > 0 ? (
+                        <div className="flex-1 flex flex-col mb-15 p-4">
+                            <div className="pb-5 text-2xl font-bold mb-4">
+                                Liked Videos ({likes.length})
+                            </div>
 
-                    </div>
+                            <div className="h-full overflow-y-auto">
+                                {likes.map((video) => (
+                                    <div key={video.id} className="flex p-3 my-2 bg-[#1a1a1a] rounded-lg hover:bg-[#252525] transition-colors">
+                                        <div onClick={() => playVideo(video)} className="flex gap-4 cursor-pointer flex-1">
+                                            <img src={video.thumbnail} alt="" className="w-48 h-32 object-cover rounded-md"/>
+                                            <div className="flex flex-col justify-start">
+                                                <span className="text-lg font-medium mb-2">{video.title}</span>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <img src={video.profilePicture} className="w-6 h-6 rounded-full" alt="" />
+                                                    <span className="text-sm text-gray-400 flex items-center gap-2">
+                                                        {video.channelName} 
+                                                        <CircleCheckBig className="w-3 text-blue-500"/> 
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+                                                    <span>{video.views} views</span>
+                                                    <span>|</span>
+                                                    <span>{video.postDate} ago</span>
+                                                </div>
+                                                <span className="text-gray-400 text-sm">Liked on {video.likedAt}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col justify-between items-end">
+                                            <button 
+                                                className="p-2 hover:bg-[#4f4a4a22]  rounded-md transition-colors" 
+                                                onClick={() => removeFromLikes(video.id)}
+                                                title="Remove from liked videos"
+                                            >
+                                                <X size={18}/>
+                                            </button>
+                                            <div className="flex items-center gap-1 text-xs">
+                                                <ThumbsUp size={14} className="fill-current"/>
+                                                <span>Liked</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="flex-1 flex flex-col items-center justify-center">
+                            <div className="text-6xl mb-4">💔</div>
+                            <p className="text-2xl mb-2">No liked videos yet</p>
+                            <span className="text-gray-400">Videos you like will appear here</span>
+                        </div>
+                    )}
                     </>
                 )}
 
@@ -234,7 +369,7 @@ export function Youtube(){
 
                         <div className="h-full overflow-y-auto">
                             {history.map((video) => (
-                                <div className="flex p-2 my-2 max-h-30 bg-[#45454522] rounded-md">
+                                <div key={video.id} className="flex p-2 my-2 max-h-30 bg-[#45454522] rounded-md">
                                 <div onClick={() => playVideo(video)} className="flex gap-2 cursor-pointer">
                                     <img src={video.thumbnail} alt="" className=" rounded-sm"/>
                                     <div className="flex flex-col">
@@ -261,8 +396,9 @@ export function Youtube(){
                     ):(
                     <>
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <img className="w-50" src="/orpheus.png" alt="orphus" />
-                        <span className="text-5xl">No videos</span>
+                        <div className="text-6xl mb-4">🕐</div>
+                        <span className="text-2xl">No videos in history</span>
+                        <span className="text-gray-400 mt-2">Videos you watch will appear here</span>
                     </div>
                     </>
                 )}
