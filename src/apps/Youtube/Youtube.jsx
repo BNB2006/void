@@ -410,7 +410,8 @@ export function Youtube(){
                 <div className="flex items-center gap-5">
                     <div className="flex items-center gap-1 bg-[#222222]  p-2 rounded-full text-sm  cursor-not-allowed"><Plus/><span>Create</span></div>
                     <Bell size={22} onClick={() => setToggleNotification(!toggleNotification)} className={`cursor-pointer ${toggleNotification ? 'fill-current' : ''}`}/>
-                    <div className="rounded-full border w-8 h-8 bg-blue-400"></div>
+                    {/* <div className="rounded-full border w-8 h-8 bg-blue-400"></div> */}
+                    <img src="https://i.pinimg.com/originals/95/1b/7e/951b7e1c05c3cdfc5ffd514ff4ccc23c.jpg?nii=t" className="w-10 h-10 rounded-full" alt="" />
                 </div>
             </div>
 
