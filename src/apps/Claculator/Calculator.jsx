@@ -69,9 +69,9 @@ export function Calculator() {
   ]
 
   return (
-    <div className="w-full max-w-xs mx-auto p-2">
-
-      <div className="bg-black text-white text-right text-2xl p-4 mb-2 rounded">{display}</div>
+    <div className="bg-[#333232] h-full flex items-center justify-center">
+      <div className="w-100 p-2 bg-[#222222]">
+        <div className="bg-black text-white text-right text-5xl p-4 mb-2 rounded">{display}</div>
 
       <div className="grid gap-1">
         {buttons.map((row, i) => (
@@ -80,11 +80,11 @@ export function Calculator() {
               <button
                 key={btn}
                 className={`
-                  h-12 rounded border
+                  h-15 rounded border
                   ${
                     ["+", "-", "*", "/", "="].includes(btn)
                       ? "bg-blue-500 text-white hover:bg-blue-600" 
-                      : "bg-gray-200 hover:bg-gray-300"
+                      : "bg-gray-300 hover:bg-gray-400"
                   }
                   ${btn === "0" ? "col-span-2" : ""} // Zero button spans 2 columns
                 `}
@@ -103,6 +103,7 @@ export function Calculator() {
             ))}
           </div>
         ))}
+      </div>
       </div>
     </div>
   )
