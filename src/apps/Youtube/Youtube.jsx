@@ -395,7 +395,7 @@ export function Youtube(){
             <div className="p-2 flex items-center justify-between">
                 <div className=" flex items-center">
                     <button className="mr-2 cursor-not-allowed"><Menu/></button>
-                    <img src="https://cdn-icons-png.flaticon.com/128/5968/5968852.png" alt="youtube logo" className="w-5"/>
+                    <img src="/Logo/youtube.png" alt="youtube logo" className="w-5"/>
                     <span className="text-white text-xl">YouTube</span>
                 </div>
 
@@ -410,7 +410,6 @@ export function Youtube(){
                 <div className="flex items-center gap-5">
                     <div className="flex items-center gap-1 bg-[#222222]  p-2 rounded-full text-sm  cursor-not-allowed"><Plus/><span>Create</span></div>
                     <Bell size={22} onClick={() => setToggleNotification(!toggleNotification)} className={`cursor-pointer ${toggleNotification ? 'fill-current' : ''}`}/>
-                    {/* <div className="rounded-full border w-8 h-8 bg-blue-400"></div> */}
                     <img src="https://i.pinimg.com/originals/95/1b/7e/951b7e1c05c3cdfc5ffd514ff4ccc23c.jpg?nii=t" className="w-10 h-10 rounded-full" alt="" />
                 </div>
             </div>

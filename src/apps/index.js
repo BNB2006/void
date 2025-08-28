@@ -127,7 +127,7 @@ export const apps = [
     id: "youtube",
     title: "YouTube",
     icon: React.createElement("img", {
-      src: "https://cdn-icons-png.flaticon.com/128/5968/5968852.png",
+      src: "/Logo/youtube.png",
       alt: "Youtube",
       width: 34,
     }),
