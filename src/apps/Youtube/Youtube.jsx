@@ -105,17 +105,17 @@ export function Youtube(){
   },
   {
     id: 7,
-    title: "Lord of the Mysteries | Official Trailer 2 | [ENG SUB]",
-    src: "https://www.youtube.com/embed/02jcxBEIWpg?si=OZFTu5kDPtwBwaRC",
+    title: "Marvel Studios' Loki | Official Trailer | Disney+",
+    src: "https://www.youtube.com/embed/nW948Va-l10?si=9AU5e6I11MYeljWf",
     isDisliked: false,
-    thumbnail: "https://img.youtube.com/vi/02jcxBEIWpg/maxresdefault.jpg",
-    views: "807K",
-    postDate: "1 year",
-    channelName: "MemozaFusion",
+    thumbnail: "https://i.ytimg.com/vi/nW948Va-l10/hq720.jpg",
+    views: "25M",
+    postDate: "4 year",
+    channelName: "Marvel Entertainment",
     isLiked: false,
     profilePicture:
-      "https://yt3.googleusercontent.com/MxxxHmYiH2BHmB1cdoDubP4h1gTikFMVTXRzgBxU6LfvBGX5agT2ajECMTZVCrSRCXTsQdBVFg",
-    subscribers: "73.8K",
+      "https://yt3.googleusercontent.com/k7BhK-hm9_MbJbaKznHPhir6e4pWXbm1ppAHoseLIzRgoAPBMmH1IIhYKlXbGono25RD1OQwHQ",
+    subscribers: "21.7M",
   },
   {
     id: 8,
@@ -235,7 +235,7 @@ export function Youtube(){
   {
     id: 16,
     title:
-      "[Otherworldly Munchkin: Let's Speedrun the Dungeon with Only 1 HP! | Official Trailer | Crunchyroll",
+      "Otherworldly Munchkin: Let's Speedrun the Dungeon with Only 1 HP! | Official Trailer | Crunchyroll",
     src: "https://www.youtube.com/embed/Clr6kEIs5co",
     thumbnail: "https://img.youtube.com/vi/Clr6kEIs5co/maxresdefault.jpg",
     views: "73K",
