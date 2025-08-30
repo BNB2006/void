@@ -4,7 +4,9 @@ import { Desktop } from "./components/Desktop/Desktop"
 import { Taskbar } from "./components/Taskbar/Taskbar"
 import { WindowManager } from "./components/WindowManager/WindowManager"
 import { SystemContext } from "./Context/SystemContext";
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/Power/Loader";
+import { Power } from "lucide-react";
+import PowerButton from "./components/Power/PowerButton";
 
 function App() {
   const { systemState } = useContext(SystemContext);
@@ -40,23 +42,25 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (systemState === "restarting") startLoader();
+    if (systemState === "restarting" | systemState === "loading") startLoader();
+    if (systemState === "shutting-down") startLoader();
   }, [systemState]);
 
   if( systemState === "shutting-down"){
     return (
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-black text-white text-3xl">
-        <span>Shutdown Successful...</span>
-        <span className="text-xs">(working on it)</span>
-      </div>
+      <Loader progress={progress} message="Shutting down..."/>
     );
+  }
+
+  if( systemState === "off"){
+    return(
+      <PowerButton/>
+    )
   }
 
   if(systemState === "restarting") return <Loader progress={progress} message="Restarting"/> ;
 
-  
-
-  if(isLoading) return <Loader progress={progress} message="Loading"/>
+  if(isLoading | systemState === "loading") return <Loader progress={progress} message="Loading"/>
   
 
   return (
