@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { Desktop } from "./components/Desktop/Desktop"
 import { Taskbar } from "./components/Taskbar/Taskbar"
 import { WindowManager } from "./components/WindowManager/WindowManager"
-import { SystemContext } from "./Context/SystemContext";
+import { SystemContext } from "./context/SystemContext";
 import Loader from "./components/Power/Loader";
 import { Power } from "lucide-react";
 import PowerButton from "./components/Power/PowerButton";
